@@ -93,7 +93,13 @@ function Process() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <SectionHeader
-          eyebrow="HOW IT WORKS"
+          eyebrow={
+            <>
+              <span className="px-4 py-1.5 rounded-full  border-b-3 border-white text-white text-3xl md:text-5xl font-semibold uppercase tracking-wider ">
+                HOW IT WORKS
+              </span>
+            </>
+          }
           title={
             <>
               Our <span className="text-primary">process.</span>

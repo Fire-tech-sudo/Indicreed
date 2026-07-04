@@ -91,7 +91,13 @@ function WhyChooseUs() {
           <div>
             <SectionHeader
               align="left"
-              eyebrow="WHY INDICREED STUDIO"
+              eyebrow={
+                <>
+                  <span className="px-4 py-1.5 rounded-full  border-b-3 border-black text-black text-xl md:text-3xl font-semibold uppercase tracking-wider ">
+                    WHY CHOOSE INDICREED
+                  </span>
+                </>
+              }
               title={
                 <>
                   More than editors.

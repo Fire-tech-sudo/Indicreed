@@ -104,7 +104,7 @@ function Services() {
         <SectionHeader
           eyebrow={
             <>
-              <span className="px-4 py-1.5 rounded-full  border-b-3 border-black text-black text-5xl font-semibold uppercase tracking-wider ">
+              <span className="px-4 py-1.5 rounded-full  border-b-3 border-black text-black text-3xl md:text-5xl font-semibold uppercase tracking-wider ">
                 WHAT WE DO
               </span>
             </>
