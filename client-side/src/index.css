@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Alex+Brush&family=Dancing+Script:wght@400..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Alex+Brush&family=Courgette&family=Dancing+Script:wght@400..700&display=swap");
 @import "tailwindcss";
 
 @theme {
@@ -50,7 +50,7 @@
   /* =====================
      FONT FAMILY (Kept Original)
   ====================== */
-  --font-display-lg: "Playfair Display";
+  --font-display-lg: "Courgette";
   --font-label-md: "Space Grotesk";
   --font-headline-xl: "Playfair Display";
   --font-headline-lg: "Playfair Display";

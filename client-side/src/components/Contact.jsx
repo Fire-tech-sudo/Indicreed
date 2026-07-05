@@ -78,16 +78,13 @@ function Contact() {
   ];
 
   return (
-    <section
-      id="contact"
-      className="relative py-24 lg:py-32 overflow-hidden bg-surface"
-    >
+    <section id="contact" className="relative py-24 overflow-hidden bg-surface">
       <CinematicOverlay />
 
       <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 relative z-10">
         {/*<SectionHeader eyebrow="GET IN TOUCH" />*/}
         <ScrollReveal>
-          <span className="flex max-w-md mx-auto justify-center items-center gap-2 px-4 py-2  text-5xl  border-b-2 text-on-surface rounded-full font-bold uppercase tracking-widest mb-20 backdrop-blur-sm">
+          <span className="flex max-w-md mx-auto justify-center items-center gap-2 px-4 py-2 text-3xl md:text-5xl  border-b-2 text-on-surface rounded-full font-bold uppercase tracking-widest mb-20 backdrop-blur-sm">
             Get In Touch
           </span>
         </ScrollReveal>

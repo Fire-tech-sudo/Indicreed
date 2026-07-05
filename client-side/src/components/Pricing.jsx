@@ -80,7 +80,7 @@ function Pricing() {
             </span>
           </ScrollReveal>
           <ScrollReveal delay={0.1}>
-            <h2 className="text-4xl sm:text-5xl font-display font-bold mb-6 text-on-surface">
+            <h2 className="text-4xl sm:text-5xl font-display-lg font-bold mb-6 text-on-surface">
               Simple, transparent{" "}
               <span className="text-primary text-gradient">pricing.</span>
             </h2>

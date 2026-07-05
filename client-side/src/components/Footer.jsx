@@ -46,7 +46,7 @@ const SOCIALS = [
 
 function Footer() {
   return (
-    <footer className="relative pt-20 pb-8 overflow-hidden bg-surface">
+    <footer className="relative pt-20 pb-3 md:pb-8 overflow-hidden bg-surface">
       {/* Divider mapped to theme */}
       <div className="absolute top-0 left-[10%] right-[10%] h-px bg-gradient-to-r from-transparent via-outline-variant to-transparent" />
 
@@ -54,12 +54,9 @@ function Footer() {
         {/* Top */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8 mb-16">
           {/* Brand */}
-          <div className="sm:col-span-2">
+          <div className="sm:col-span-2 ">
             <ScrollReveal>
-              <a
-                href="#"
-                className="inline-flex items-center gap-2.5 mb-5 group"
-              >
+              <a href="#" className="flex items-center gap-2.5 mb-5 group">
                 {/* Logo Background mapped to Primary */}
                 <div className="w-9 h-9 rounded-lg flex items-center justify-center  transition-transform group-hover:scale-105">
                   <svg
@@ -167,7 +164,7 @@ function Footer() {
                   Editing tips, industry insights, and exclusive offers.
                 </p>
               </div>
-              <div className="flex w-full md:w-auto gap-2.5">
+              <div className="flex w-full flex-column md:flex-row md:w-auto gap-2.5">
                 <input
                   type="email"
                   placeholder="your@email.com"

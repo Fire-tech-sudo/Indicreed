@@ -4,6 +4,8 @@ import ScrollReveal from "./ScrollReveal";
 import SectionHeader from "./SectionHeader";
 import GhostButton from "./GhostButton";
 import CinematicOverlay from "./CinematicOverlay";
+import productImage from "../assets/productLaunch.png";
+import brandImage from "../assets/brandImage.png";
 
 function Portfolio() {
   const [activeFilter, setActiveFilter] = useState("All");
@@ -14,8 +16,7 @@ function Portfolio() {
     {
       title: "Brand Story — Altitude Co.",
       category: "Brand",
-      image:
-        "https://images.unsplash.com/photo-1536240478700-b869070f9279?w=600&q=80",
+      image: brandImage,
       duration: "3:24",
       views: "2.1M views",
     },
@@ -30,9 +31,7 @@ function Portfolio() {
     {
       title: "Product Launch Reel",
       category: "Reels",
-      image:
-        "https://images.unsplash.com/photo-1505739998589-00fc462bc5f5?w=600&q=80",
-      duration: "0:30",
+      image: productImage,
       views: "5.4M views",
     },
     {

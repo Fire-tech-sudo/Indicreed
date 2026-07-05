@@ -104,8 +104,8 @@ function Testimonials() {
         <SectionHeader
           eyebrow={
             <>
-              <span className="px-4 py-1.5 rounded-full  border-b-3 border-white text-white text-5xl font-semibold uppercase tracking-wider ">
-                OUR WORK
+              <span className="px-4 py-1.5 rounded-full  border-b-3 border-white text-white text-3xl md:text-5xl font-semibold uppercase tracking-wider ">
+                CLIENT LOVE
               </span>
             </>
           }
