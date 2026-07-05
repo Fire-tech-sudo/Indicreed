@@ -5,6 +5,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Link, useNavigate } from "react-router-dom";
 import { useApp } from "../context/AppContext";
 
+const MotionLink = motion(Link);
+
 // Default Logo Component
 const DefaultLogo = ({ color }) => (
   <svg
@@ -166,9 +168,9 @@ function Navbar({
           {/* ========== DESKTOP NAV LINKS ========== */}
           <div className="hidden md:flex items-center gap-1">
             {navLinks.map((link, index) => (
-              <motion.a
+              <MotionLink
                 key={link.name}
-                href={link.href}
+                to={link.href}
                 className="px-4 py-2 text-sm font-medium rounded-lg hover:bg-white/5 transition-all duration-300"
                 style={{ color: navLinkColor }}
                 onMouseEnter={(e) => (e.target.style.color = navLinkHoverColor)}
@@ -178,7 +180,7 @@ function Navbar({
                 transition={{ delay: 0.1 * index, duration: 0.5 }}
               >
                 {link.name}
-              </motion.a>
+              </MotionLink>
             ))}
           </div>
 
