@@ -82,7 +82,7 @@ const Hero = () => {
             INDICREED VIDEO PRODUCTION AGENCY
           </p>
           {/* Main Headline */}
-          <h1 className="font-display-lg text-4xl md:text-display-lg leading-tight mb-15 md:mb-30 text-black font-extrabold tracking-widest">
+          <h1 className="font-display-lg text-4xl md:text-display-lg leading-tight mb-15 md:mb-30 text-gray-800  font-extrabold tracking-widest">
             CRAFTING VISUAL <br className="hidden md:block" /> LEGACIES.
           </h1>
           <div className="flex flex-col md:flex-row gap-6 justify-center items-center md:mt-12">
