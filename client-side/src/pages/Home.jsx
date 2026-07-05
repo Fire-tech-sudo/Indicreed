@@ -8,11 +8,13 @@ import Testimonials from "../components/Testimonials";
 import Pricing from "../components/Pricing";
 import Process from "../components/Process";
 import Contact from "../components/Contact";
+import Navbar from "../components/Navbar";
 
 function Home() {
   return (
     <div>
       {/* Hero — bright/photographic, reads as the "light" anchor */}
+      <Navbar />
       <Hero />
 
       {/* Dark */}

@@ -26,13 +26,6 @@ function SectionHeader({ eyebrow, title, subtitle, align = "center" }) {
           </p>
         </ScrollReveal>
       )}
-      {title && (
-        <ScrollReveal delay={0.1}>
-          <h2 className="font-display-lg text-headline-xl text-on-surface font-bold leading-tight">
-            {title}
-          </h2>
-        </ScrollReveal>
-      )}
       {subtitle && (
         <ScrollReveal delay={0.2}>
           <p className="text-on-surface-variant font-body-lg mt-6">

@@ -1,35 +1,92 @@
 import React from "react";
-import { Route, Routes } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/ReactToastify.css";
-import Home from "./pages/Home";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
+import { AppProvider } from "./context/AppContext";
 import Navbar from "./components/Navbar";
+import NotificationToast from "./components/NotificationToast";
+import ProtectedRoute from "./components/ProtectedRoute";
+import PublicRoute from "./components/PublicRoute";
 import Footer from "./components/Footer";
+// Pages
+import Home from "./pages/Home";
+import Portfolio from "./pages/PortfolioPage";
+import ProjectDetail from "./pages/ProjectDetails";
+import AuthPage from "./pages/AuthPage";
 
-const App = () => {
+// Paths where the global Navbar should NOT render — Home has its own
+// custom navbar placed inside Home.jsx, so it's excluded here. Add more
+// paths to this array if other pages later get their own custom navbar.
+const HIDE_GLOBAL_NAVBAR_ON = ["/"];
+
+/**
+ * Small wrapper rendered INSIDE <Router>, because useLocation only works
+ * for components that are descendants of Router — App itself can't call it
+ * since App is the component that creates the Router, not a child of it.
+ */
+function AppLayout() {
+  const location = useLocation();
+  const showGlobalNavbar = !HIDE_GLOBAL_NAVBAR_ON.includes(location.pathname);
+
   return (
-    <div>
-      {/* Background mapped to surface, min-h-screen added for full coverage, and selection contrast improved */}
-      <div className="bg-surface text-on-surface font-body-md selection:bg-primary/30 selection:text-on-primary reveal-active min-h-screen pb-20 md:pb-0">
-        {/* ToastContainer set to dark theme to match the cinematic vibe */}
-        <ToastContainer position="bottom-right" theme="dark" />
+    <>
+      {showGlobalNavbar && (
+        <Navbar
+          logoColor="#3b82f6"
+          logoTextColor="#ffffff"
+          logoAccentColor="#3b82f6"
+          ctaBgColor="#3b82f6"
+          ctaTextColor="#ffffff"
+          navLinkColor="#ffffff"
+          navLinkHoverColor="#94a3b8"
+        />
+      )}
+      <Routes>
+        {/* ============ PUBLIC ROUTES ============ */}
+        <Route path="/" element={<Home />} />
+        <Route path="/portfolio" element={<Portfolio />} />
+        <Route path="/portfolio/:id" element={<ProjectDetail />} />
 
-        <Navbar />
+        {/* ============ AUTH ROUTE (blocked after login) ============ */}
+        <Route
+          path="/auth"
+          element={
+            <PublicRoute>
+              <AuthPage />
+            </PublicRoute>
+          }
+        />
 
-        {/*{showLogin && <Login />}*/}
-        <Routes>
-          <Route path="/" element={<Home />} />
-          {/*<Route path="/result" element={<Result />} />
-          <Route path="/buycredit" element={<BuyCredit />} />
-          <Route path="/gallery" element={<Gallery />} />
-          <Route path="/profile" element={<Account />} />*/}
-        </Routes>
-
-        {/*<BottomNavbar />*/}
-        <Footer />
-      </div>
-    </div>
+        {/* ============ PROTECTED ROUTES (login required) ============ */}
+        {/* Example: Dashboard page - only accessible after login */}
+        {/*
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        />
+        */}
+      </Routes>
+      <Footer />
+    </>
   );
-};
+}
 
+function App() {
+  return (
+    <Router>
+      <AppProvider>
+        {/* Global Notification Toast */}
+        <NotificationToast />
+        <AppLayout />
+      </AppProvider>
+    </Router>
+  );
+}
 export default App;

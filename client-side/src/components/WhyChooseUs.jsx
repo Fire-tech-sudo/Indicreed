@@ -2,6 +2,65 @@ import React from "react";
 import { motion } from "framer-motion";
 import ScrollReveal from "./ScrollReveal";
 import SectionHeader from "./SectionHeader";
+import CinematicOverlay from "./CinematicOverlay";
+
+/**
+ * Rotating circular badge — dashed circle with text curved around it,
+ * spinning slowly and endlessly, with a static icon fixed in the center.
+ * Classic premium-studio decorative element, fills empty space with motion
+ * instead of a static image.
+ */
+function RotatingBadge() {
+  return (
+    <div className="relative w-40 h-40 md:w-48 md:h-48 flex items-center justify-center">
+      <motion.svg
+        viewBox="0 0 200 200"
+        className="absolute inset-0 w-full h-full"
+        animate={{ rotate: 360 }}
+        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+      >
+        <defs>
+          <path
+            id="circlePath"
+            d="M 100, 100 m -80, 0 a 80,80 0 1,1 160,0 a 80,80 0 1,1 -160,0"
+          />
+        </defs>
+        <circle
+          cx="100"
+          cy="100"
+          r="80"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1"
+          strokeDasharray="4 6"
+          className="text-outline-variant"
+        />
+        <text className="fill-primary text-[11px] tracking-[0.25em] font-bold uppercase">
+          <textPath href="#circlePath" startOffset="0%">
+            Creative Partners • Since Day One •
+          </textPath>
+        </text>
+      </motion.svg>
+
+      {/* Static center icon — doesn't rotate with the ring */}
+      <div className="relative w-16 h-16 rounded-full bg-primary flex items-center justify-center text-on-primary z-10">
+        <svg
+          className="w-6 h-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          strokeWidth={1.5}
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M13 10V3L4 14h7v7l9-11h-7z"
+          />
+        </svg>
+      </div>
+    </div>
+  );
+}
 
 function WhyChooseUs() {
   const reasons = [
@@ -81,14 +140,26 @@ function WhyChooseUs() {
 
   return (
     <section className="relative py-28 overflow-hidden bg-surface">
-      {/* Hairline dividers — kept, these already match hero's restraint */}
+      {/* Hairline dividers */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-outline-variant to-transparent" />
+      <CinematicOverlay />
       <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-outline-variant to-transparent" />
+
+      {/* Large faded background numeral — fills empty space subtly, purely decorative */}
+      <motion.div
+        className="absolute -left-10 top-1/2 -translate-y-1/2 font-display-lg text-primary/[0.04] text-[28rem] leading-none select-none pointer-events-none hidden lg:block"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 1.5 }}
+      >
+        6
+      </motion.div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left column */}
-          <div>
+          <div className="relative">
             <SectionHeader
               align="left"
               eyebrow={
@@ -114,7 +185,7 @@ function WhyChooseUs() {
               </p>
             </ScrollReveal>
             <ScrollReveal delay={0.3}>
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-4 mb-12">
                 <div className="flex -space-x-3">
                   {[1, 2, 3, 4].map((i) => (
                     <div
@@ -135,6 +206,18 @@ function WhyChooseUs() {
                 </div>
               </div>
             </ScrollReveal>
+
+            {/* Fills the empty space below — rotating badge + a supporting line */}
+            <ScrollReveal delay={0.4}>
+              <div className="flex items-center gap-8">
+                <RotatingBadge />
+                <div className="max-w-[180px]">
+                  <p className="font-display-lg text-3xl text-on-surface italic">
+                    "Every project, treated like our own."
+                  </p>
+                </div>
+              </div>
+            </ScrollReveal>
           </div>
 
           {/* Right column — Reasons grid */}
@@ -145,7 +228,10 @@ function WhyChooseUs() {
                   className="group p-6 bg-surface-container border border-outline-variant hover:border-primary/50 transition-all duration-500 h-full"
                   whileHover={{ y: -3 }}
                 >
-                  <div className="w-11 h-11 flex items-center justify-center border border-primary/30 text-primary mb-4 group-hover:bg-primary group-hover:text-on-primary transition-colors duration-300">
+                  <motion.div
+                    className="w-11 h-11 flex items-center justify-center border border-primary/30 text-primary mb-4 group-hover:bg-primary group-hover:text-on-primary transition-colors duration-300"
+                    whileHover={{ rotate: 8 }}
+                  >
                     <svg
                       className="w-5 h-5"
                       fill="none"
@@ -155,7 +241,7 @@ function WhyChooseUs() {
                     >
                       {reason.icon}
                     </svg>
-                  </div>
+                  </motion.div>
                   <h3 className="font-display-lg text-on-surface mb-2 text-lg font-semibold">
                     {reason.title}
                   </h3>

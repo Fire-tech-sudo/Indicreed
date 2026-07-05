@@ -64,7 +64,7 @@ function Pricing() {
   ];
 
   return (
-    <section id="pricing" className="relative py-28 overflow-hidden">
+    <section className="relative py-28 overflow-hidden" id="pricing">
       {/* Background mapped to surface variables */}
       <div className="absolute inset-0 bg-gradient-to-b from-surface via-surface-container to-surface" />
       <CinematicOverlay />

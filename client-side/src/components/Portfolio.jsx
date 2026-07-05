@@ -6,6 +6,7 @@ import GhostButton from "./GhostButton";
 import CinematicOverlay from "./CinematicOverlay";
 import productImage from "../assets/productLaunch.png";
 import brandImage from "../assets/brandImage.png";
+import { Link } from "react-router-dom";
 
 function Portfolio() {
   const [activeFilter, setActiveFilter] = useState("All");
@@ -182,13 +183,15 @@ function Portfolio() {
         {/* View All Button — same GhostButton used everywhere else */}
         <ScrollReveal delay={0.2}>
           <div className="text-center mt-12">
-            <GhostButton
-              as={motion.button}
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              VIEW FULL PORTFOLIO
-            </GhostButton>
+            <Link to="/portfolio">
+              <GhostButton
+                as={motion.button}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                VIEW FULL PORTFOLIO
+              </GhostButton>
+            </Link>
           </div>
         </ScrollReveal>
       </div>
