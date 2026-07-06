@@ -1,12 +1,7 @@
-// src/context/AppContext.jsx
-
 import React, { createContext, useContext, useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 
-// Create Context
 const AppContext = createContext(null);
 
-// Custom Hook - easy access
 export const useApp = () => {
   const context = useContext(AppContext);
   if (!context) {
@@ -15,12 +10,13 @@ export const useApp = () => {
   return context;
 };
 
-// Provider Component
+const API_BASE = import.meta.env.VITE_BACKEND_URI; // production me apna deployed backend URL daalna
+
 export const AppProvider = ({ children }) => {
   // ============ AUTH STATE ============
   const [user, setUser] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [isAuthLoading, setIsAuthLoading] = useState(true); // Initial check
+  const [isAuthLoading, setIsAuthLoading] = useState(true);
   const [authError, setAuthError] = useState(null);
 
   // ============ APP STATE ============
@@ -33,28 +29,68 @@ export const AppProvider = ({ children }) => {
     checkAuthStatus();
   }, []);
 
-  const checkAuthStatus = () => {
+  const checkAuthStatus = async () => {
+    const token = localStorage.getItem("indicreed_token");
+
+    if (!token) {
+      setIsAuthLoading(false);
+      return;
+    }
+
     try {
-      const savedUser = localStorage.getItem("indicreed_user");
-      const savedToken = localStorage.getItem("indicreed_token");
+      const response = await fetch(`${API_BASE}/user/profile`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
-      if (savedUser && savedToken) {
-        // Token validity check (basic)
-        const tokenData = JSON.parse(atob(savedToken.split(".")[1] || "{}"));
-        const isExpired = tokenData.exp && tokenData.exp * 1000 < Date.now();
+      if (!response.ok) throw new Error("Session expired");
 
-        if (isExpired) {
-          // Token expired - logout
-          logout();
-        } else {
-          setUser(JSON.parse(savedUser));
-          setIsAuthenticated(true);
-        }
-      }
+      const data = await response.json();
+      setUser(data.user);
+      setIsAuthenticated(true);
     } catch (error) {
-      // Corrupted data - clean up
       localStorage.removeItem("indicreed_user");
       localStorage.removeItem("indicreed_token");
+      setUser(null);
+      setIsAuthenticated(false);
+    } finally {
+      setIsAuthLoading(false);
+    }
+  };
+
+  // ============ SEND OTP (registration step 1) ============
+  const register = async (name, email, password, otp) => {
+    setAuthError(null);
+    setIsAuthLoading(true);
+
+    try {
+      const response = await fetch(`${API_BASE}/user/register`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, password, otp }),
+      });
+
+      const data = await response.json();
+
+      // ✅ FIX: HTTP status + success field dono check karo
+      if (!response.ok || !data.success) {
+        throw new Error(data.message || "Registration failed");
+      }
+
+      setUser(data.user);
+      setIsAuthenticated(true);
+
+      localStorage.setItem("indicreed_user", JSON.stringify(data.user));
+      localStorage.setItem("indicreed_token", data.token);
+
+      addNotification("success", `Welcome, ${data.user.name}!`);
+      return { success: true, user: data.user };
+    } catch (error) {
+      const errorMsg = error.message || "Registration failed";
+      setAuthError(errorMsg);
+      addNotification("error", errorMsg);
+      return { success: false, error: errorMsg };
     } finally {
       setIsAuthLoading(false);
     }
@@ -66,57 +102,29 @@ export const AppProvider = ({ children }) => {
     setIsAuthLoading(true);
 
     try {
-      // 🔄 REPLACE with your actual API call
-      // const response = await fetch('/api/auth/login', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify({ email, password })
-      // });
-      // const data = await response.json();
+      const response = await fetch(`${API_BASE}/user/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
 
-      // ============ DEMO/MOCK LOGIN ============
-      // Remove this block when connecting real API
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+      const data = await response.json();
 
-      // Demo validation
-      if (email === "test@test.com" && password === "password123") {
-        throw new Error("Demo: Use any other email to login");
+      // ✅ FIX: dono check karo
+      if (!response.ok || !data.success) {
+        throw new Error(data.message || "Login failed");
       }
 
-      const mockUser = {
-        id: Date.now(),
-        name: email.split("@")[0],
-        email: email,
-        avatar: null,
-        role: "user",
-        createdAt: new Date().toISOString(),
-      };
-
-      // Create a simple mock token (NOT for production!)
-      const mockToken = btoa(
-        JSON.stringify({
-          userId: mockUser.id,
-          email: mockUser.email,
-          exp: Math.floor(Date.now() / 1000) + 86400, // 24 hours
-        }),
-      );
-
-      const data = { user: mockUser, token: `mock.${mockToken}.signature` };
-      // ============ END DEMO BLOCK ============
-
-      // Save to state
       setUser(data.user);
       setIsAuthenticated(true);
 
-      // Save to localStorage
       localStorage.setItem("indicreed_user", JSON.stringify(data.user));
       localStorage.setItem("indicreed_token", data.token);
 
       addNotification("success", `Welcome back, ${data.user.name}!`);
-
       return { success: true, user: data.user };
     } catch (error) {
-      const errorMsg = error.message || "Login failed. Please try again.";
+      const errorMsg = error.message || "Login failed";
       setAuthError(errorMsg);
       addNotification("error", errorMsg);
       return { success: false, error: errorMsg };
@@ -125,65 +133,32 @@ export const AppProvider = ({ children }) => {
     }
   };
 
-  // ============ SIGNUP ============
-  const signup = async (name, email, password) => {
+  // ============ SEND OTP ============
+  const sendOtp = async (name, email, password) => {
     setAuthError(null);
-    setIsAuthLoading(true);
-
     try {
-      // 🔄 REPLACE with your actual API call
-      // const response = await fetch('/api/auth/signup', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify({ name, email, password })
-      // });
-      // const data = await response.json();
+      const response = await fetch(`${API_BASE}/auth/send-otp`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, password }),
+      });
 
-      // ============ DEMO/MOCK SIGNUP ============
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+      const data = await response.json();
 
-      const mockUser = {
-        id: Date.now(),
-        name: name,
-        email: email,
-        avatar: null,
-        role: "user",
-        createdAt: new Date().toISOString(),
-      };
+      // ✅ FIX: dono check karo
+      if (!response.ok || !data.success) {
+        throw new Error(data.message || "Failed to send OTP");
+      }
 
-      const mockToken = btoa(
-        JSON.stringify({
-          userId: mockUser.id,
-          email: mockUser.email,
-          exp: Math.floor(Date.now() / 1000) + 86400,
-        }),
-      );
-
-      const data = { user: mockUser, token: `mock.${mockToken}.signature` };
-      // ============ END DEMO BLOCK ============
-
-      setUser(data.user);
-      setIsAuthenticated(true);
-
-      localStorage.setItem("indicreed_user", JSON.stringify(data.user));
-      localStorage.setItem("indicreed_token", data.token);
-
-      addNotification(
-        "success",
-        `Account created! Welcome, ${data.user.name}!`,
-      );
-
-      return { success: true, user: data.user };
+      addNotification("success", data.message || "OTP sent to your email!");
+      return { success: true };
     } catch (error) {
-      const errorMsg = error.message || "Signup failed. Please try again.";
+      const errorMsg = error.message || "Failed to send OTP";
       setAuthError(errorMsg);
       addNotification("error", errorMsg);
       return { success: false, error: errorMsg };
-    } finally {
-      setIsAuthLoading(false);
     }
   };
-
   // ============ LOGOUT ============
   const logout = () => {
     setUser(null);
@@ -193,10 +168,10 @@ export const AppProvider = ({ children }) => {
     localStorage.removeItem("indicreed_user");
     localStorage.removeItem("indicreed_token");
 
-    addNotification("info", "You have been logged out.");
+    addNotification("info", "Aap logout ho gaye hain.");
   };
 
-  // ============ UPDATE USER ============
+  // ============ UPDATE USER (local state only) ============
   const updateUser = (updatedData) => {
     const updatedUser = { ...user, ...updatedData };
     setUser(updatedUser);
@@ -209,7 +184,6 @@ export const AppProvider = ({ children }) => {
     const notification = { id, type, message };
     setNotifications((prev) => [...prev, notification]);
 
-    // Auto remove after 4 seconds
     setTimeout(() => {
       setNotifications((prev) => prev.filter((n) => n.id !== id));
     }, 4000);
@@ -219,20 +193,20 @@ export const AppProvider = ({ children }) => {
     setNotifications((prev) => prev.filter((n) => n.id !== id));
   };
 
-  // ============ GET AUTH TOKEN (for API calls) ============
+  // ============ GET AUTH TOKEN ============
   const getToken = () => {
     return localStorage.getItem("indicreed_token");
   };
 
-  // ============ CONTEXT VALUE ============
   const contextValue = {
     // Auth
     user,
     isAuthenticated,
     isAuthLoading,
     authError,
+    sendOtp,
+    register,
     login,
-    signup,
     logout,
     updateUser,
     getToken,

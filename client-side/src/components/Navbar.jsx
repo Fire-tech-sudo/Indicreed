@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Link, useNavigate } from "react-router-dom";
 import { useApp } from "../context/AppContext";
 
-const MotionLink = motion(Link);
+const MotionLink = motion.create(Link);
 
 // Default Logo Component
 const DefaultLogo = ({ color }) => (
@@ -156,7 +156,7 @@ function Navbar({
                 {renderLogo()}
               </div>
               <span
-                className="text-2xl font-display font-bold tracking-tight"
+                className="text-xl md:text-2xl font-display font-bold tracking-tight"
                 style={{ color: logoTextColor }}
               >
                 {logoText}
@@ -435,7 +435,7 @@ function Navbar({
               ))}
 
               {/* ===== Auth/CTA Buttons ===== */}
-              <div className="pt-3 space-y-3 border-t border-white/[0.06] mt-3">
+              <div className="pt-3 space-y-5 border-t border-white/[0.06] mt-3">
                 {isAuthenticated ? (
                   <>
                     {/* CTA → Contact */}
@@ -473,7 +473,7 @@ function Navbar({
                     {/* Login */}
                     <Link to="/auth" onClick={() => setIsMobileMenuOpen(false)}>
                       <motion.div
-                        className="block w-full px-4 py-3 text-center font-semibold 
+                        className="block w-full px-4 py-3 mb-2 md:mb-0 text-center font-semibold 
                                    rounded-xl border border-white/[0.08] 
                                    hover:bg-white/[0.05] transition-all"
                         style={{ color: navLinkColor }}

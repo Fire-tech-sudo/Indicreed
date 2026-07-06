@@ -2,7 +2,9 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import CinematicOverlay from "../components/CinematicOverlay";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useApp } from "../context/AppContext";
+import OTPVerification from "../components/OTPVerification";
 import {
   FaEnvelope,
   FaLock,
@@ -12,16 +14,24 @@ import {
   FaGoogle,
   FaApple,
   FaArrowRight,
-  FaPlay,
   FaCheck,
 } from "react-icons/fa";
 
 const AuthPage = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { sendOtp, login, isAuthLoading, addNotification } = useApp();
+
   const [isLogin, setIsLogin] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [focusedField, setFocusedField] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [formError, setFormError] = useState("");
+
+  // ============ OTP STATES ============
+  const [showOTP, setShowOTP] = useState(false);
+  const [registrationData, setRegistrationData] = useState(null);
 
   const [formData, setFormData] = useState({
     name: "",
@@ -32,25 +42,122 @@ const AuthPage = () => {
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+    setFormError("");
   };
 
-  const handleSubmit = (e) => {
+  // ============ FORM VALIDATION ============
+  const validateForm = () => {
+    if (!formData.email.trim()) {
+      setFormError("Email is required");
+      return false;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      setFormError("Invalid email format");
+      return false;
+    }
+    if (!formData.password) {
+      setFormError("Password is required");
+      return false;
+    }
+    if (formData.password.length < 6) {
+      setFormError("Password must be at least 6 characters");
+      return false;
+    }
+
+    if (!isLogin) {
+      if (!formData.name.trim()) {
+        setFormError("Name is required");
+        return false;
+      }
+      if (!formData.confirmPassword) {
+        setFormError("Please confirm your password");
+        return false;
+      }
+      if (formData.password !== formData.confirmPassword) {
+        setFormError("Passwords don't match");
+        return false;
+      }
+    }
+
+    return true;
+  };
+
+  // ============ FORM SUBMIT ============
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsLoading(true);
-    setTimeout(() => {
-      setIsLoading(false);
-      alert(isLogin ? "Login Successful!" : "Account Created!");
-    }, 2000);
+    setFormError("");
+
+    if (!validateForm()) return;
+
+    if (isLogin) {
+      // ===== LOGIN: Direct login, NO OTP =====
+      const result = await login(formData.email, formData.password);
+      if (result.success) {
+        const redirectTo = location.state?.from || "/";
+        navigate(redirectTo, { replace: true });
+      } else {
+        setFormError(result.error || "Login failed");
+      }
+    } else {
+      // ===== SIGNUP: Send OTP first =====
+      setIsLoading(true);
+
+      try {
+        // Backend: POST /api/v1/auth/send-otp → { name, email, password }
+        const otpResult = await sendOtp(
+          formData.name,
+          formData.email,
+          formData.password,
+        );
+
+        if (otpResult.success) {
+          // Save registration data and show OTP overlay
+          setRegistrationData({
+            name: formData.name,
+            email: formData.email,
+            password: formData.password,
+          });
+          setShowOTP(true);
+        } else {
+          setFormError(otpResult.error || "Failed to send OTP");
+        }
+      } catch (error) {
+        setFormError("Failed to send OTP. Please try again.");
+      } finally {
+        setIsLoading(false);
+      }
+    }
+  };
+
+  // ============ OTP CLOSE HANDLER ============
+  const handleOTPClose = (result) => {
+    setShowOTP(false);
+
+    if (result?.verified) {
+      // Registration successful
+      const redirectTo = location.state?.from || "/";
+      navigate(redirectTo, { replace: true });
+    } else {
+      // User cancelled - keep form data
+      setRegistrationData(null);
+    }
   };
 
   const toggleMode = () => {
     setIsLogin(!isLogin);
-    setFormData({ name: "", email: "", password: "", confirmPassword: "" });
+    setFormData({
+      name: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+    });
     setFocusedField(null);
+    setFormError("");
+    setShowOTP(false);
+    setRegistrationData(null);
   };
 
-  // Password strength checker — kept the color feedback since it's
-  // functional information, not decoration
+  // Password strength checker
   const getPasswordStrength = (password) => {
     if (!password) return { level: 0, text: "", color: "" };
     let score = 0;
@@ -71,35 +178,30 @@ const AuthPage = () => {
 
   const passwordStrength = getPasswordStrength(formData.password);
 
-  const inputWrapperClass = (field, required) =>
+  const inputWrapperClass = (field) =>
     `relative border transition-all duration-300 ${
       focusedField === field
         ? "border-white"
         : "border-gray-700 hover:border-gray-500"
     }`;
 
-  return (
-    <div className="min-h-screen bg-surface flex items-center justify-center relative overflow-hidden px-4 py-6  sm:py-20">
-      {/* Same reusable atmosphere used across the rest of the site —
-          replaces the old particles/film-strip/multi-orb clutter */}
-      {/* Subtle single divider line instead of atmospheric overlay — keeps
-          this page clean and minimal, matching a monochrome auth form */}
-      <div className="absolute  top-0 left-1/2 -translate-x-1/2 w-1/2 h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent" />
+  const isSubmitting = isAuthLoading || isLoading;
 
-      {/* ============ MAIN AUTH CONTAINER ============ */}
+  return (
+    <div className="min-h-screen bg-surface flex items-center justify-center relative overflow-hidden px-4 py-6 sm:py-10 md:py-20">
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent" />
+
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-        className="relative z-10 w-full max-w-[1000px] max-h-[127vh] grid grid-cols-1 lg:grid-cols-2 rounded-xl
+        className="relative z-10 w-full max-w-[1000px] max-h-[127vh] grid grid-cols-1 mt-15 md:mt-0 lg:grid-cols-2 rounded-xl
                    border border-gray-200/50 bg-white overflow-hidden"
       >
         {/* ============ LEFT PANEL - BRANDING ============ */}
-
-        <div className="relative hidden lg:flex flex-col justify-between p-10  bg-primary border-r border-gray-200 overflow-hidden">
-          {/* Logo */}
+        <div className="relative hidden lg:flex flex-col justify-between p-10 bg-primary border-r border-gray-200 overflow-hidden">
           <div className="relative z-10 flex items-center gap-3">
-            <div className="w-9 h-9  items-center justify-center">
+            <div className="w-9 h-9 items-center justify-center">
               <svg
                 version="1.0"
                 xmlns="http://www.w3.org/2000/svg"
@@ -114,30 +216,16 @@ const AuthPage = () => {
                   fill="#ffffff"
                   stroke="none"
                 >
-                  <path
-                    d="M817 2028 c-7 -94 -35 -168 -97 -256-28 -39 -50 -74 -50 -77 0 -2
-20 -34 45 -70 24 -36 54 -96 67 -133 22 -66 23 -75 26 -624 1 -307 0 -558 -3
--558 -17 0 -107 70 -162 126 -114 116 -183 309 -169 474 12 144 75 317 165
-448 l41 61 -51 60 c-28 34 -54 61 -58 61 -10 0 -108 -159 -151 -248 -66 -135
--92 -237 -97 -387 -4 -108 -2 -145 15 -216 63 -264 202 -421 525 -594 l87 -47
-0 891 0 891 -24 62 c-21 58 -73 165 -94 196 -6 9 -11 -12 -15 -60z"
-                  />
-                  <path
-                    d="M1108 2004 c-26 -54 -54 -117 -63 -138 -18 -46 -24 -34 96 -196 269
--367 369 -586 369 -808 -1 -158 -66 -326 -168 -429 -53 -54 -145 -123 -164
--123 -4 0 -8 96 -8 213 0 233 -16 411 -56 602 -24 117 -72 291 -79 284 -1 -2
-0 -309 3 -681 l5 -677 86 46 c188 101 285 173 360 267 136 171 198 385 172
-600 -26 221 -118 416 -354 746 -107 150 -134 209 -145 319 l-7 74 -47 -99z"
-                  />
+                  <path d="M817 2028 c-7 -94 -35 -168 -97 -256-28 -39 -50 -74 -50 -77 0 -2 20 -34 45 -70 24 -36 54 -96 67 -133 22 -66 23 -75 26 -624 1 -307 0 -558 -3 -558 -17 0 -107 70 -162 126 -114 116 -183 309 -169 474 12 144 75 317 165 448 l41 61 -51 60 c-28 34 -54 61 -58 61 -10 0 -108 -159 -151 -248 -66 -135 -92 -237 -97 -387 -4 -108 -2 -145 15 -216 63 -264 202 -421 525 -594 l87 -47 0 891 0 891 -24 62 c-21 58 -73 165 -94 196 -6 9 -11 -12 -15 -60z" />
+                  <path d="M1108 2004 c-26 -54 -54 -117 -63 -138 -18 -46 -24 -34 96 -196 269 -367 369 -586 369 -808 -1 -158 -66 -326 -168 -429 -53 -54 -145 -123 -164 -123 -4 0 -8 96 -8 213 0 233 -16 411 -56 602 -24 117 -72 291 -79 284 -1 -2 0 -309 3 -681 l5 -677 86 46 c188 101 285 173 360 267 136 171 198 385 172 600 -26 221 -118 416 -354 746 -107 150 -134 209 -145 319 l-7 74 -47 -99z" />
                 </g>
               </svg>
             </div>
-            <span className="text-black font-display-lg text-lg tracking-tight">
+            <span className="font-display-lg text-lg text-black tracking-tight">
               INDICREED<span className="text-white">STUDIO</span>
             </span>
           </div>
 
-          {/* Middle content */}
           <div className="relative z-10">
             <AnimatePresence mode="wait">
               <motion.div
@@ -170,7 +258,6 @@ const AuthPage = () => {
               </motion.div>
             </AnimatePresence>
 
-            {/* Stats — sharp corners, no glow, single accent family */}
             <div className="grid grid-cols-3 gap-3 mt-8">
               {[
                 { value: "500+", label: "Projects" },
@@ -189,7 +276,6 @@ const AuthPage = () => {
             </div>
           </div>
 
-          {/* Testimonial — square accent avatar, not gradient */}
           <div className="relative z-10 bg-white border border-gray-200 p-4 mb-20">
             <div className="flex items-center gap-3 mb-2">
               <div className="w-9 h-9 flex items-center justify-center border border-gray-300 text-black font-bold text-sm flex-shrink-0">
@@ -216,19 +302,36 @@ const AuthPage = () => {
           </div>
         </div>
 
-        {/* ============ RIGHT PANEL - FORM (scrolls internally if content is tall) ============ */}
+        {/* ============ RIGHT PANEL - FORM ============ */}
         <div className="relative bg-black p-6 sm:p-10 lg:p-12 overflow-y-auto">
-          {/* Mobile-only compact logo — inline, not fixed, so it never overlaps content */}
+          {/* Mobile Logo */}
           <div className="lg:hidden flex items-center gap-2 mb-6">
-            <div className="w-7 h-7 border border-gray-700 flex items-center justify-center">
-              <FaPlay className="text-white text-[10px] ml-0.5" />
+            <div className="w-7 h-7 flex items-center justify-center">
+              <svg
+                version="1.0"
+                xmlns="http://www.w3.org/2000/svg"
+                width="196.000000pt"
+                height="216.000000pt"
+                viewBox="0 0 196.000000 216.000000"
+                preserveAspectRatio="xMidYMid meet"
+                className="w-full h-full"
+              >
+                <g
+                  transform="translate(0.000000,216.000000) scale(0.100000,-0.100000)"
+                  fill="#ffffff"
+                  stroke="none"
+                >
+                  <path d="M817 2028 c-7 -94 -35 -168 -97 -256-28 -39 -50 -74 -50 -77 0 -2 20 -34 45 -70 24 -36 54 -96 67 -133 22 -66 23 -75 26 -624 1 -307 0 -558 -3 -558 -17 0 -107 70 -162 126 -114 116 -183 309 -169 474 12 144 75 317 165 448 l41 61 -51 60 c-28 34 -54 61 -58 61 -10 0 -108 -159 -151 -248 -66 -135 -92 -237 -97 -387 -4 -108 -2 -145 15 -216 63 -264 202 -421 525 -594 l87 -47 0 891 0 891 -24 62 c-21 58 -73 165 -94 196 -6 9 -11 -12 -15 -60z" />
+                  <path d="M1108 2004 c-26 -54 -54 -117 -63 -138 -18 -46 -24 -34 96 -196 269 -367 369 -586 369 -808 -1 -158 -66 -326 -168 -429 -53 -54 -145 -123 -164 -123 -4 0 -8 96 -8 213 0 233 -16 411 -56 602 -24 117 -72 291 -79 284 -1 -2 0 -309 3 -681 l5 -677 86 46 c188 101 285 173 360 267 136 171 198 385 172 600 -26 221 -118 416 -354 746 -107 150 -134 209 -145 319 l-7 74 -47 -99z" />
+                </g>
+              </svg>
             </div>
             <span className="font-display-lg text-sm text-white">
               INDICREED<span className="text-gray-400">STUDIO</span>
             </span>
           </div>
 
-          {/* Toggle Tabs — sharp corners, single accent, matches GhostButton family */}
+          {/* Toggle Tabs */}
           <div className="flex mb-8 border border-gray-700">
             {["Login", "Sign Up"].map((tab) => {
               const isActive =
@@ -236,16 +339,8 @@ const AuthPage = () => {
               return (
                 <button
                   key={tab}
-                  onClick={() => {
-                    setIsLogin(tab === "Login");
-                    setFormData({
-                      name: "",
-                      email: "",
-                      password: "",
-                      confirmPassword: "",
-                    });
-                  }}
-                  className={`relative flex-1 py-3 font-label-caps text-label-caps transition-all duration-300 ${
+                  onClick={() => toggleMode()}
+                  className={`relative flex-1 py-3 font-label-caps text-label-caps transition-all duration-300 cursor-pointer ${
                     isActive
                       ? "bg-white text-black"
                       : "bg-transparent text-gray-400 hover:text-white"
@@ -276,6 +371,20 @@ const AuthPage = () => {
                   : "Fill in the details to get started with us"}
               </p>
             </motion.div>
+          </AnimatePresence>
+
+          {/* Error message */}
+          <AnimatePresence>
+            {formError && (
+              <motion.div
+                initial={{ opacity: 0, y: -10, height: 0 }}
+                animate={{ opacity: 1, y: 0, height: "auto" }}
+                exit={{ opacity: 0, y: -10, height: 0 }}
+                className="mb-4 px-4 py-3 border border-red-500/40 bg-red-500/10 text-red-400 text-sm"
+              >
+                {formError}
+              </motion.div>
+            )}
           </AnimatePresence>
 
           {/* FORM */}
@@ -347,7 +456,7 @@ const AuthPage = () => {
                     {isLogin && (
                       <button
                         type="button"
-                        className="text-white text-xs font-semibold hover:opacity-80"
+                        className="text-white text-xs font-semibold hover:opacity-80 cursor-pointer"
                       >
                         Forgot Password?
                       </button>
@@ -369,7 +478,7 @@ const AuthPage = () => {
                     <button
                       type="button"
                       onClick={() => setShowPassword(!showPassword)}
-                      className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-300"
+                      className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-300 cursor-pointer"
                     >
                       {showPassword ? (
                         <FaEyeSlash className="text-sm" />
@@ -379,6 +488,7 @@ const AuthPage = () => {
                     </button>
                   </div>
 
+                  {/* Password Strength */}
                   {!isLogin && formData.password && (
                     <motion.div
                       initial={{ opacity: 0 }}
@@ -433,7 +543,7 @@ const AuthPage = () => {
                         onClick={() =>
                           setShowConfirmPassword(!showConfirmPassword)
                         }
-                        className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-300"
+                        className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-300 cursor-pointer"
                       >
                         {showConfirmPassword ? (
                           <FaEyeSlash className="text-sm" />
@@ -509,24 +619,35 @@ const AuthPage = () => {
               </motion.div>
             </AnimatePresence>
 
-            {/* Submit — GhostButton-family styling (filled, sharp corners) */}
+            {/* ============ SUBMIT BUTTON ============ */}
             <motion.button
               type="submit"
-              disabled={isLoading}
-              className="w-full py-3.5 bg-white text-black font-label-caps text-label-caps disabled:opacity-70 disabled:cursor-not-allowed transition-all duration-300"
-              whileHover={{ scale: 1.01 }}
-              whileTap={{ scale: 0.98 }}
+              disabled={isSubmitting}
+              className="w-full py-3.5 bg-white text-black font-label-caps text-label-caps 
+                         disabled:opacity-70 disabled:cursor-not-allowed 
+                         transition-all duration-300 cursor-pointer"
+              whileHover={!isSubmitting ? { scale: 1.01 } : {}}
+              whileTap={!isSubmitting ? { scale: 0.98 } : {}}
             >
               <span className="flex items-center justify-center gap-2">
-                {isLoading ? (
+                {isSubmitting ? (
                   <>
                     <div className="w-4 h-4 border-2 border-black/30 border-t-black rounded-full animate-spin" />
-                    {isLogin ? "SIGNING IN..." : "CREATING ACCOUNT..."}
+                    {isLogin ? "SIGNING IN..." : "SENDING OTP..."}
                   </>
                 ) : (
                   <>
-                    {isLogin ? "SIGN IN" : "CREATE ACCOUNT"}
-                    <FaArrowRight className="text-xs" />
+                    {isLogin ? (
+                      <>
+                        SIGN IN
+                        <FaArrowRight className="text-xs" />
+                      </>
+                    ) : (
+                      <>
+                        <FaEnvelope className="text-xs" />
+                        SEND OTP & CREATE ACCOUNT
+                      </>
+                    )}
                   </>
                 )}
               </span>
@@ -545,13 +666,17 @@ const AuthPage = () => {
             <div className="grid grid-cols-2 gap-3">
               <button
                 type="button"
-                className="flex items-center justify-center gap-2.5 py-3 border border-gray-700 text-white text-sm font-medium hover:border-gray-500 transition-all duration-300"
+                className="flex items-center justify-center gap-2.5 py-3 border border-gray-700 
+                           text-white text-sm font-medium hover:border-gray-500 
+                           transition-all duration-300 cursor-pointer"
               >
                 <FaGoogle className="text-base" /> Google
               </button>
               <button
                 type="button"
-                className="flex items-center justify-center gap-2.5 py-3 border border-gray-700 text-white text-sm font-medium hover:border-gray-500 transition-all duration-300"
+                className="flex items-center justify-center gap-2.5 py-3 border border-gray-700 
+                           text-white text-sm font-medium hover:border-gray-500 
+                           transition-all duration-300 cursor-pointer"
               >
                 <FaApple className="text-lg" /> Apple
               </button>
@@ -563,7 +688,7 @@ const AuthPage = () => {
               <button
                 type="button"
                 onClick={toggleMode}
-                className="text-white font-semibold hover:opacity-80 transition-opacity"
+                className="text-white font-semibold hover:opacity-80 transition-opacity cursor-pointer"
               >
                 {isLogin ? "Sign Up" : "Sign In"}
               </button>
@@ -571,6 +696,16 @@ const AuthPage = () => {
           </form>
         </div>
       </motion.div>
+
+      {/* ============ OTP OVERLAY ============ */}
+      <OTPVerification
+        isOpen={showOTP}
+        onClose={handleOTPClose}
+        email={registrationData?.email || ""}
+        registrationData={registrationData}
+        otpLength={6}
+        resendTimeout={30}
+      />
     </div>
   );
 };

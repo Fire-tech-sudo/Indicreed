@@ -56,7 +56,7 @@ const Hero = () => {
 
   return (
     <div className="theme-hero-nav">
-      <section className="relative h-screen flex items-center justify-center overflow-hidden">
+      <section className="relative h-screen flex items-center justify-center overflow-hidden ">
         <div className="absolute inset-0 z-0">
           {/* Overlay completely transparent to maintain the video's natural neutral brightness */}
           <div className="absolute inset-0 bg-transparent z-10"></div>
@@ -76,7 +76,7 @@ const Hero = () => {
             playsInline
           />
         </div>
-        <div className="relative z-20 text-center px-6 md:px-margin-desktop max-w-5xl cinematic-reveal reveal-active md:mt-25">
+        <div className="relative z-20 text-center  px-6 md:px-margin-desktop max-w-5xl cinematic-reveal reveal-active md:mt-25">
           {/* Label kept primary (Black in this scope) for brand consistency */}
           <p className="font-label-caps text-[10px] md:text-label-caps text-primary tracking-[0.4em] mb-6 font-bold">
             INDICREED VIDEO PRODUCTION AGENCY

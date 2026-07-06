@@ -128,7 +128,7 @@ const ProjectDetail = () => {
         </p>
         <Link
           to="/portfolio"
-          className="flex items-center gap-3  px-8 py-4 bg-gradient-to-r from-indigo-500 to-pink-500 
+          className="flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-indigo-500 to-pink-500 
                      text-white rounded-xl font-semibold transition-all hover:scale-105 
                      hover:shadow-xl hover:shadow-indigo-500/30"
         >
@@ -169,10 +169,10 @@ const ProjectDetail = () => {
     <div className="min-h-screen  bg-[#0f0f23]">
       <div className="max-w-7xl mx-auto px-10  pb-20">
         {/* ============ Back Button ============ */}
-        <div className="pt-24 pb-8">
+        <div className="pt-24 pb-8 ">
           <button
             onClick={() => navigate("/portfolio")}
-            className="inline-flex items-center gap-3  px-6 py-3 
+            className="inline-flex items-center gap-3 px-6 py-3 
                        text-indigo-400 border-x-2 rounded-full 
                        font-semibold text-sm transition-all duration-300 
                        hover:bg-indigo-500/20 hover:-translate-x-1 cursor-pointer"

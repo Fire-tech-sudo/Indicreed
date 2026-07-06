@@ -164,7 +164,7 @@ function Footer() {
                   Editing tips, industry insights, and exclusive offers.
                 </p>
               </div>
-              <div className="flex w-full flex-column md:flex-row md:w-auto gap-2.5">
+              <div className="flex w-full flex-col md:flex-row md:w-auto gap-2.5">
                 <input
                   type="email"
                   placeholder="your@email.com"

@@ -9,7 +9,7 @@ const ProjectCard = ({ project, index = 0 }) => {
 
   return (
     <article
-      className="group flex flex-col overflow-hidden rounded-[24px] border
+      className="group flex flex-col overflow-hidden rounded-[8px] border
                  border-[var(--color-outline-variant)]
                  bg-[var(--color-surface-container-low)]
                  shadow-[0_10px_30px_rgba(0,0,0,0.28)]

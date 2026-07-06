@@ -42,10 +42,10 @@ const Portfolio = () => {
           {/* Content */}
           <div className="relative z-10 mx-auto max-w-3xl">
             <h1
-              className="mb-10 text-5xl font-bold tracking-tight md:text-6xl border-b-3 rounded-full border-white pb-3 w-[50%] mx-auto
+              className="mb-10 text-2xl font-bold tracking-tight md:text-6xl border-b-3 rounded-full border-white pb-3 w-[50%] mx-auto
                        [font-family:var(--font-headline-xl)] text-[var(--color-on-surface)]"
             >
-              My <span className="text-[var(--color-primary)]">Portfolio</span>
+              Portfolio
             </h1>
 
             <p
