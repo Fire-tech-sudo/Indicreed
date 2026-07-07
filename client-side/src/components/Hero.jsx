@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from "react";
 import heroVideo from "../assets/heroVideo.mp4";
 import heroVideoMobile from "../assets/heroVideoVertical.mp4";
-import heroPoster from "../assets/1.png";
+import heroPoster from "../assets/heroPoster.png";
 
 const Hero = () => {
   const videoRef = useRef(null);
@@ -40,7 +40,7 @@ const Hero = () => {
     // timeupdate and jump back to the 3-second mark slightly BEFORE the video
     // actually reaches its end, so playback never stops — it just seeks
     // forward while still playing, which looks seamless.
-    const SEEK_BACK_TO = 3; // seconds
+    const SEEK_BACK_TO = 2; // seconds
     const END_BUFFER = 0.2; // jump this many seconds before the true end
 
     const handleTimeUpdate = () => {
@@ -79,11 +79,12 @@ const Hero = () => {
         <div className="relative z-20 text-center  px-6 md:px-margin-desktop max-w-5xl cinematic-reveal reveal-active md:mt-25">
           {/* Label kept primary (Black in this scope) for brand consistency */}
           <p className="font-label-caps text-[10px] md:text-label-caps text-primary tracking-[0.4em] mb-6 font-bold">
-            INDICREED VIDEO PRODUCTION AGENCY
+            INDICREED STUDIOS THE ART OF THE CUT
           </p>
           {/* Main Headline */}
-          <h1 className="font-display-lg text-4xl md:text-display-lg leading-tight mb-15 md:mb-30 text-gray-800  font-extrabold tracking-widest">
-            CRAFTING VISUAL <br className="hidden md:block" /> LEGACIES.
+          <h1 className="font-display-lg text-xl md:text-[64px] leading-tight mb-15 md:mb-30 text-black/90 font-extrabold tracking-widest">
+            WHERE ORDINARY
+            <br className="hidden md:block" /> BECOMES EXTRAORDINARY.
           </h1>
           <div className="flex flex-col md:flex-row gap-6 justify-center items-center md:mt-12">
             {/* CTA Button updated to Transparent (Ghost Style) with Fill on Hover */}

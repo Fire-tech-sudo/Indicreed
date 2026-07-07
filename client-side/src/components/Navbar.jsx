@@ -160,7 +160,52 @@ function Navbar({
                 style={{ color: logoTextColor }}
               >
                 {logoText}
-                <span style={{ color: logoAccentColor }}>{logoAccentText}</span>
+                <span style={{ color: logoAccentColor }}>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 800 400"
+                    width="100%"
+                    height="100%"
+                  >
+                    {/*<!-- Logo Group centered in the viewBox -->*/}
+                    <g transform="translate(0, 190)">
+                      {/*<!-- The stylized, oversized "I" -->*/}
+                      <rect
+                        x="0"
+                        y="-74"
+                        width="18"
+                        height="75"
+                        fill={logoTextColor}
+                      />
+
+                      {/*<!-- The rest of "NDICREED" -->*/}
+                      <text
+                        x="28"
+                        y="0"
+                        fill={logoTextColor}
+                        font-family="Impact, 'Arial Black', sans-serif"
+                        font-weight="900"
+                        font-size="72"
+                        letter-spacing="1.5"
+                      >
+                        NDICREED
+                      </text>
+
+                      {/*<!-- The "STUDIO" text -->*/}
+                      <text
+                        x="440"
+                        y="-5"
+                        fill={logoAccentColor}
+                        font-family="Montserrat, 'Segoe UI', Helvetica, Arial, sans-serif"
+                        font-weight="400"
+                        font-size="48"
+                        letter-spacing="7"
+                      >
+                        STUDIO
+                      </text>
+                    </g>
+                  </svg>
+                </span>
               </span>
             </motion.div>
           </Link>
@@ -198,8 +243,8 @@ function Navbar({
                 >
                   {/* ===== User Profile ===== */}
                   <motion.div
-                    className="flex items-center gap-2.5 px-4 py-2 rounded-xl 
-                               bg-white/[0.05] border border-white/[0.08] cursor-pointer
+                    className="flex items-center gap-2.5 px-4 py-1 rounded-xl 
+                               bg-white/[0.05] border border-black cursor-pointer
                                hover:bg-white/[0.08] transition-all duration-300"
                     whileHover={{ scale: 1.02 }}
                   >
@@ -215,7 +260,10 @@ function Navbar({
                     </div>
 
                     {/* Name */}
-                    <span className="text-sm font-medium text-gray-300 max-w-[100px] truncate">
+                    <span
+                      className="text-sm font-medium  max-w-[100px] truncate"
+                      style={{ color: ctaTextColor }}
+                    >
                       {user?.name || "User"}
                     </span>
                   </motion.div>
@@ -282,12 +330,15 @@ function Navbar({
                                  transition-all duration-300 cursor-pointer
                                  border border-white/[0.08] hover:border-white/[0.15]
                                  hover:bg-white/[0.05]"
-                      style={{ color: navLinkColor }}
+                      style={{
+                        backgroundColor: ctaBgColor,
+                        color: ctaTextColor,
+                      }}
                       onMouseEnter={(e) =>
                         (e.target.style.color = navLinkHoverColor)
                       }
                       onMouseLeave={(e) =>
-                        (e.target.style.color = navLinkColor)
+                        (e.target.style.color = ctaTextColor)
                       }
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
@@ -395,7 +446,7 @@ function Navbar({
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   className="flex items-center gap-3 px-4 py-4 mb-3 
-                             bg-white/[0.03] rounded-xl border border-white/[0.06]"
+                             bg-white/[0.03] rounded-xl border border-black"
                 >
                   <div
                     className="w-10 h-10 rounded-full flex items-center justify-center 
@@ -474,9 +525,12 @@ function Navbar({
                     <Link to="/auth" onClick={() => setIsMobileMenuOpen(false)}>
                       <motion.div
                         className="block w-full px-4 py-3 mb-2 md:mb-0 text-center font-semibold 
-                                   rounded-xl border border-white/[0.08] 
-                                   hover:bg-white/[0.05] transition-all"
-                        style={{ color: navLinkColor }}
+                                   rounded-xl border border-black 
+                                   hover:bg-white transition-all"
+                        style={{
+                          backgroundColor: ctaBgColor,
+                          color: ctaTextColor,
+                        }}
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: 0.3 }}
