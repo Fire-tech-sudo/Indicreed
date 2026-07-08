@@ -4,6 +4,7 @@ import cors from "cors";
 import "dotenv/config";
 import userRouter from "./src/routes/userRouter.js";
 import otpRouter from "./src/routes/otpRouter.js";
+import contactRouter from "./src/routes/contactRouter.js";
 
 const PORT = process.env.PORT || 4000;
 const app = express();
@@ -14,6 +15,7 @@ await connectDB();
 
 app.use("/api/v1/user", userRouter);
 app.use("/api/v1/auth", otpRouter);
+app.use("/api/v1/contact", contactRouter);
 
 app.get("/", (req, res) => res.send("System Online. API is Working...."));
 
