@@ -8,11 +8,13 @@ const sectionLinks = [
   { href: "#services", label: "Services" },
   { href: "#why-us", label: "Our Edge" },
   { href: "#brands", label: "BRANDS", highlight: true },
-  { href: "#why-us", label: "Our Edge" },
 ];
 
 // Base page links, Login will be added conditionally
-const basePageLinks = [{ to: "/portfolio", label: "Portfolio" }];
+const basePageLinks = [
+  { to: "/portfolio", label: "Portfolio" },
+  { to: "/web-development", label: "Web Dev" },
+];
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -38,16 +40,16 @@ export default function Header() {
   };
 
   return (
-    <header className="sticky top-0 left-0  right-0 z-50 bg-black/70 backdrop-blur-md border-b border-gray-800">
-      <div className="container mx-auto px-6 py-4 flex justify-between items-center">
+    <header className="sticky top-0 left-0 right-0 z-50 bg-black/70 backdrop-blur-md border-b border-gray-800">
+      <div className="container mx-auto px-4 sm:px-6 py-3 sm:py-4 flex justify-between items-center min-w-0">
         <Link
           to="/"
-          className="text-2xl font-black text-white tracking-widest uppercase"
+          className="text-base sm:text-lg md:text-2xl font-black text-white tracking-widest uppercase whitespace-nowrap flex-shrink-0"
         >
           INDICREED STUDIOS<span className="text-blue-500">.</span>
         </Link>
 
-        <nav className="hidden md:flex space-x-8 items-center text-sm font-semibold">
+        <nav className="hidden md:flex space-x-4 lg:space-x-8 items-center text-sm font-semibold flex-shrink min-w-0">
           {/* Section links (About, Services, Brands, Our Edge) */}
           {sectionLinks.map((link) => (
             <a

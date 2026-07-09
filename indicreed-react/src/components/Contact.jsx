@@ -10,13 +10,13 @@ const quickStarters = [
 
 export default function Contact() {
   return (
-    <section id="contact" className="py-24 px-6 relative">
+    <section id="contact" className="py-16 sm:py-24 px-4 sm:px-6 relative">
       <div className="container mx-auto max-w-4xl text-center">
-        <div className="glass-card p-10 md:p-16 rounded-3xl">
-          <h3 className="text-4xl md:text-5xl font-extrabold text-white leading-tight">
+        <div className="glass-card p-6 sm:p-10 md:p-16 rounded-3xl">
+          <h3 className="text-2xl sm:text-4xl md:text-5xl font-extrabold text-white leading-tight">
             Ready to Elevate Your Visuals?
           </h3>
-          <p className="text-gray-400 mt-6 max-w-xl mx-auto text-lg">
+          <p className="text-gray-400 mt-6 max-w-xl mx-auto text-sm sm:text-lg">
             We're open to long-term collaborations and new, high-impact projects. Reach out today and
             let's craft something truly *extraordinary*.
           </p>
@@ -26,7 +26,7 @@ export default function Contact() {
               href={`${WHATSAPP}?text=${encodeURIComponent("Hi Indicreed, I'm ready to elevate my visuals!")}`}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center justify-center bg-blue-600 text-white font-bold text-xl px-12 py-5 rounded-xl cta-button hover:bg-blue-500 transition-all"
+              className="inline-flex items-center justify-center bg-blue-600 text-white font-bold text-base sm:text-xl px-8 sm:px-12 py-4 sm:py-5 rounded-xl cta-button hover:bg-blue-500 transition-all"
             >
               <MessageCircle className="w-6 h-6 mr-3" /> Chat on WhatsApp
             </a>

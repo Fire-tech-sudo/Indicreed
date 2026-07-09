@@ -92,13 +92,13 @@ function FeatureItem({ feature }) {
 
 export default function Services() {
   return (
-    <section id="services" className="py-24 px-6 bg-black">
+    <section id="services" className="py-16 sm:py-24 px-4 sm:px-6 bg-black">
       <div className="container mx-auto text-center max-w-6xl">
         <ScrollReveal direction="up">
           <h2 className="text-sm font-bold text-blue-500 uppercase tracking-widest mb-2">
             Our Creative Arsenal
           </h2>
-          <h3 className="text-4xl md:text-5xl font-extrabold text-white">
+          <h3 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white">
             Customized Video Editing Packages
           </h3>
         </ScrollReveal>
@@ -106,7 +106,7 @@ export default function Services() {
         {/* Short Form */}
         <div className="mt-16">
           <ScrollReveal direction="up">
-            <h4 className="text-3xl font-bold text-white mb-10 border-b border-gray-800 pb-4 inline-block">
+            <h4 className="text-xl sm:text-3xl font-bold text-white mb-10 border-b border-gray-800 pb-4 inline-block">
               Short Form Editing (Reels, Shorts, TikTok)
             </h4>
           </ScrollReveal>
@@ -114,7 +114,7 @@ export default function Services() {
             {shortFormPackages.map((pkg, index) => (
               <ScrollReveal key={pkg.name} direction="up" delay={index * 0.1}>
                 <div
-                  className={`glass-card p-8 rounded-3xl text-left flex flex-col h-full ${
+                  className={`glass-card p-6 sm:p-8 rounded-3xl text-left flex flex-col h-full ${
                     pkg.popular ? 'ring-2 ring-blue-500 relative bg-blue-900/10' : ''
                   }`}
                 >
@@ -151,7 +151,7 @@ export default function Services() {
         {/* Long Form */}
         <div className="mt-20">
           <ScrollReveal direction="up">
-            <h4 className="text-3xl font-bold text-white mb-10 border-b border-gray-800 pb-4 inline-block">
+            <h4 className="text-xl sm:text-3xl font-bold text-white mb-10 border-b border-gray-800 pb-4 inline-block">
               Long Form Editing (YouTube, Corporate, Vlogs)
             </h4>
           </ScrollReveal>
@@ -159,7 +159,7 @@ export default function Services() {
             {longFormPackages.map((pkg, index) => (
               <ScrollReveal key={pkg.name} direction="up" delay={index * 0.1}>
                 <div
-                  className={`glass-card p-8 rounded-3xl text-left flex flex-col h-full ${
+                  className={`glass-card p-6 sm:p-8 rounded-3xl text-left flex flex-col h-full ${
                     pkg.dashed ? 'border-dashed border-gray-700' : ''
                   }`}
                 >
@@ -182,7 +182,7 @@ export default function Services() {
               </ScrollReveal>
             ))}
           </div>
-          <p className="text-xl font-semibold text-blue-400 mt-10">
+          <p className="text-base sm:text-xl font-semibold text-blue-400 mt-10">
             Long Form Editing is currently <span className="underline">Quote-Based Only</span>. Please
             contact us directly for an accurate estimate.
           </p>

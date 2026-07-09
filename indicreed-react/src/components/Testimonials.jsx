@@ -22,7 +22,7 @@ export default function Testimonials() {
 
       <div className="container mx-auto px-6 mb-12 text-center relative z-10">
         <h2 className="text-sm font-bold text-blue-500 uppercase tracking-widest mb-2">Testimonials</h2>
-        <h3 className="text-3xl md:text-5xl font-extrabold text-white">
+        <h3 className="text-2xl sm:text-3xl md:text-5xl font-extrabold text-white">
           What Our <span className="text-blue-500">Clients Say</span>
         </h3>
       </div>

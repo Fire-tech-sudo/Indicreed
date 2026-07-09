@@ -3,15 +3,15 @@ import ScrollReveal from './ScrollReveal'
 
 export default function About() {
   return (
-    <section id="about" className="py-24 px-6 relative section-glow">
-      <div className="container mx-auto grid md:grid-cols-2 gap-16 items-center max-w-6xl">
+    <section id="about" className="py-16 sm:py-24 px-4 sm:px-6 relative section-glow">
+      <div className="container mx-auto grid md:grid-cols-2 gap-10 md:gap-16 items-center max-w-6xl">
         <ScrollReveal direction="left" width="100%">
           <div className="text-left">
             <h2 className="text-sm font-bold text-blue-500 uppercase tracking-widest mb-2">Our Foundation</h2>
-            <h3 className="text-4xl md:text-5xl font-extrabold text-white leading-snug">
+            <h3 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white leading-snug">
               The Vision of Aryan Sharma
             </h3>
-            <p className="text-gray-400 mt-6 text-lg leading-relaxed">
+            <p className="text-gray-400 mt-6 text-sm sm:text-lg leading-relaxed">
               At *Indicreed Studio*, we blend raw creativity with technical expertise to transform your
               vision into stunning visual content. We specialize in cinematic editing, storytelling, and
               high-quality motion design. We work closely with our clients—from content creators to

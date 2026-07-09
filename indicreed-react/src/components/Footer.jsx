@@ -3,7 +3,7 @@ import { Instagram, Linkedin, Youtube } from 'lucide-react'
 
 export default function Footer() {
   return (
-    <footer className="border-t border-gray-800 py-8 px-6 bg-[#0a0a0a]">
+    <footer className="border-t border-gray-800 py-8 px-4 sm:px-6 bg-[#0a0a0a]">
       <div className="container mx-auto text-center text-gray-600">
         {/* Quick Links */}
         <div className="flex flex-wrap justify-center items-center gap-6 mb-4 text-sm">
@@ -11,6 +11,7 @@ export default function Footer() {
           <Link to="/portfolio" className="text-gray-400 hover:text-white transition-colors">Portfolio</Link>
           <a href="/#about" className="text-gray-400 hover:text-white transition-colors">About</a>
           <a href="/#services" className="text-gray-400 hover:text-white transition-colors">Services</a>
+          <Link to="/web-development" className="text-gray-400 hover:text-white transition-colors">Web Dev</Link>
           <Link to="/contact" className="text-gray-400 hover:text-white transition-colors">Contact</Link>
           <Link to="/auth" className="text-gray-400 hover:text-white transition-colors">Login</Link>
           <Link to="/privacy-policy" className="text-gray-400 hover:text-white transition-colors">Privacy Policy</Link>

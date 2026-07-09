@@ -25,10 +25,10 @@ export default function Brands() {
       id="brands"
       className="py-24 relative bg-gradient-to-b from-black to-[#0a0a0a] border-t border-gray-900 overflow-hidden"
     >
-      <div className="container mx-auto text-center max-w-6xl px-6 mb-12">
+      <div className="container mx-auto text-center max-w-6xl px-4 sm:px-6 mb-12">
         <h2 className="text-sm font-bold text-blue-500 uppercase tracking-widest mb-2">Trusted Partners</h2>
-        <h3 className="text-4xl md:text-5xl font-extrabold text-white">Brands We Work With</h3>
-        <p className="text-gray-400 mt-4 max-w-2xl mx-auto text-lg">
+        <h3 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white">Brands We Work With</h3>
+        <p className="text-gray-400 mt-4 max-w-2xl mx-auto text-sm sm:text-lg">
           Collaborating with visionary creators and companies to tell their stories.
         </p>
       </div>
@@ -55,7 +55,7 @@ export default function Brands() {
               href={brand.href}
               target="_blank"
               rel="noreferrer"
-              className="brand-item flex-shrink-0 flex items-center justify-center h-32 w-56 p-6 group cursor-pointer"
+              className="brand-item flex-shrink-0 flex items-center justify-center h-24 w-40 sm:h-32 sm:w-56 p-4 sm:p-6 group cursor-pointer"
             >
               <img 
                 loading="lazy" 

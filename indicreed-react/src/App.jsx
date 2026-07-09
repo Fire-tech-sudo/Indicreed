@@ -11,6 +11,7 @@ import PublicRoute from './components/PublicRoute.jsx'
 import ProtectedRoute from './components/ProtectedRoute.jsx'
 import PolicyPage from './pages/PolicyPage.jsx'
 import ContactPage from './pages/ContactPage.jsx'
+import WebDevPage from './pages/WebDevPage.jsx'
 
 export default function App() {
   return (
@@ -25,6 +26,7 @@ export default function App() {
         <Route path="/portfolio" element={<PortfolioPage />} />
         <Route path="/portfolio/:id" element={<ProjectDetails />} />
         <Route path="/contact" element={<ContactPage />} />
+        <Route path="/web-development" element={<WebDevPage />} />
         <Route path="/privacy-policy" element={<PolicyPage />} />
         
         {/* Public route - only accessible when NOT logged in */}
