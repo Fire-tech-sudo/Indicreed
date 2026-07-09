@@ -197,12 +197,12 @@ export default function WebDevPage() {
               <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5" />
               Get a Free Quote
             </a>
-            <a
-              href="#pricing"
+            <Link
+              to="/portfolio?filter=Web%20Development"
               className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-gray-800 text-white font-semibold rounded-xl hover:bg-gray-700 transition-colors glass-card text-sm sm:text-base inline-flex items-center justify-center gap-2"
             >
-              View Packages <ChevronRight className="w-4 h-4" />
-            </a>
+              View Portfolio <ChevronRight className="w-4 h-4" />
+            </Link>
           </motion.div>
 
           {/* Quick Stats */}

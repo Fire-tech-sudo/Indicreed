@@ -350,6 +350,123 @@ const projectsData = [
     duration: "Ongoing (6+ Months)",
     role: "Podcast Video Editor",
   },
+  {
+    id: 10,
+    title: "E-Commerce Platform - Luxe Aura",
+    shortDescription:
+      "Modern, high-performance E-Commerce store built with React and Shopify",
+    fullDescription: `A premium fashion brand required a high-performing e-commerce platform that reflects their luxury aesthetic. We built a custom storefront that increased their conversion rate by 45%.
+
+    Project Highlights:
+    - Custom UI/UX Design focusing on minimalism
+    - Headless Shopify Integration
+    - Ultra-fast page load speeds (under 1.5s)
+    - Mobile-First Responsive Design
+    - Advanced Product Filtering & Search
+    - Custom Cart and Checkout Experience
+    - Integrated Payment Gateways
+    - SEO Optimized Architecture
+    - Admin Dashboard for Inventory Management
+    - Automated Email Triggers`,
+    image: "https://images.unsplash.com/photo-1661956602116-aa6865609028?w=800",
+    screenshots: [
+      "https://images.unsplash.com/photo-1661956602116-aa6865609028?w=800",
+      "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800",
+      "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800",
+    ],
+    technologies: [
+      "React",
+      "Next.js",
+      "Tailwind CSS",
+      "Shopify Storefront API",
+      "Framer Motion",
+    ],
+    category: "Web Development",
+    liveLink: "https://example.com/luxe-aura",
+    behanceLink: "https://behance.net/example-ecommerce",
+    date: "2024-10-15",
+    client: "Luxe Aura",
+    duration: "6 Weeks",
+    role: "Full-Stack Developer",
+  },
+  {
+    id: 11,
+    title: "SaaS Dashboard - TaskFlow",
+    shortDescription:
+      "Productivity and project management web application for teams",
+    fullDescription: `TaskFlow is a robust project management tool designed for agile teams. We developed a highly interactive and real-time dashboard from scratch.
+
+    Project Highlights:
+    - Real-time collaborative workspace
+    - Kanban boards with Drag & Drop functionality
+    - Dark mode and custom themes
+    - Role-based Access Control (RBAC)
+    - Interactive Data Visualizations & Charts
+    - API Integration with Slack & Google Drive
+    - Real-time Notifications via WebSockets
+    - Scalable Cloud Architecture
+    - Comprehensive Test Coverage
+    - CI/CD Pipeline Setup`,
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800",
+    screenshots: [
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800",
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800",
+      "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=800",
+    ],
+    technologies: [
+      "React",
+      "Node.js",
+      "Express",
+      "MongoDB",
+      "Socket.io",
+    ],
+    category: "Web Development",
+    liveLink: "https://example.com/taskflow",
+    behanceLink: "https://behance.net/example-saas",
+    date: "2024-11-20",
+    client: "TaskFlow Inc.",
+    duration: "10 Weeks",
+    role: "Lead Frontend Developer",
+  },
+  {
+    id: 12,
+    title: "Corporate Website - Zenith Corp",
+    shortDescription:
+      "A sleek, professional corporate website with dynamic content management",
+    fullDescription: `Zenith Corp needed a modern web presence to showcase their enterprise solutions. We delivered a fast, SEO-friendly website powered by a headless CMS.
+
+    Project Highlights:
+    - Professional Corporate Branding
+    - Custom SVG Animations
+    - CMS Integration for easy content updates
+    - Multi-language Support
+    - Case Study & Blog architecture
+    - Lead Generation Forms
+    - Integration with HubSpot CRM
+    - ADA Compliance & Accessibility
+    - GDPR Compliant Cookie Management
+    - Post-launch Maintenance Plan`,
+    image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800",
+    screenshots: [
+      "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800",
+      "https://images.unsplash.com/photo-1497215728101-856f4ea42174?w=800",
+      "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800",
+    ],
+    technologies: [
+      "Vue.js",
+      "Nuxt.js",
+      "Tailwind CSS",
+      "Sanity CMS",
+      "GraphQL",
+    ],
+    category: "Web Development",
+    liveLink: "https://example.com/zenith",
+    behanceLink: "https://behance.net/example-corporate",
+    date: "2024-12-05",
+    client: "Zenith Corporation",
+    duration: "4 Weeks",
+    role: "Web Developer",
+  }
 ];
 
 export default projectsData;

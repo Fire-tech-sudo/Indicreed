@@ -1,6 +1,7 @@
 // src/pages/Portfolio.jsx
 
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import ProjectCard from "../components/ProjectCard";
 import projectsData from "../data/projectData";
 
@@ -12,7 +13,21 @@ const stats = [
 ];
 
 const Portfolio = () => {
-  const [activeFilter, setActiveFilter] = useState("All");
+  const [searchParams, setSearchParams] = useSearchParams();
+  const initialFilter = searchParams.get("filter") || "All";
+  const [activeFilter, setActiveFilter] = useState(initialFilter);
+
+  useEffect(() => {
+    const filter = searchParams.get("filter");
+    if (filter) {
+      setActiveFilter(filter);
+    }
+  }, [searchParams]);
+
+  const handleFilterChange = (category) => {
+    setActiveFilter(category);
+    setSearchParams(category === "All" ? {} : { filter: category });
+  };
 
   const categories = ["All", ...new Set(projectsData.map((p) => p.category))];
 
@@ -61,7 +76,7 @@ const Portfolio = () => {
               return (
                 <button
                   key={index}
-                  onClick={() => setActiveFilter(category)}
+                  onClick={() => handleFilterChange(category)}
                   className={`cursor-pointer rounded-full border px-7 py-2.5 text-sm font-semibold transition-all duration-300
                   ${
                     isActive

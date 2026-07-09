@@ -58,7 +58,7 @@ export default function Footer() {
           </Link>
         </div>
 
-        <p>© 2025 INDICREED STUDIOS. All Rights Reserved. Crafted by Aryan Sharma.</p>
+        <p>© {new Date().getFullYear()} INDICREED STUDIOS. All Rights Reserved. Crafted by Aryan Sharma.</p>
         <p className="text-xs mt-2">Based in MEERUT, Uttar Pradesh, INDIA</p>
       </div>
     </footer>
