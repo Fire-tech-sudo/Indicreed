@@ -19,7 +19,7 @@ const projectsData = [
     - Subtitle & Caption Integration`,
     image: "./nike.png",
     screenshots: [
-      "https://images.unsplash.com/photo-1536240478700-b869070f9279?w=800",
+      "./nike.png",
       "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=800",
       "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=800",
     ],
