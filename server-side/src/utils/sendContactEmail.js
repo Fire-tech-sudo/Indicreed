@@ -8,7 +8,7 @@ const sendContactEmail = async (contactType, data) => {
     }
 
     // Default admin email to receive notifications
-    const adminEmail = process.env.EMAIL_USER || "workindicreed@gmail.com"; 
+    const adminEmail = process.env.CONTACT_EMAIL || "workindicreed@gmail.com"; 
 
     let subject = `New Contact Enquiry: ${contactType.toUpperCase()}`;
     let htmlContent = `
