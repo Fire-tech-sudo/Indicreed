@@ -17,7 +17,7 @@ const projectsData = [
     - Behind-the-Scenes Content Creation
     - Social Media Cutdowns (15s, 30s, 60s)
     - Subtitle & Caption Integration`,
-    image: "https://images.unsplash.com/photo-1536240478700-b869070f9279?w=800",
+    image: "./nike.png",
     screenshots: [
       "https://images.unsplash.com/photo-1536240478700-b869070f9279?w=800",
       "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=800",
