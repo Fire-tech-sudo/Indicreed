@@ -22,11 +22,10 @@ export default function Hero() {
             Ordinary
           </span>
           <br className="hidden sm:block" />
-          {" "}Becomes{" "}
+           Becomes{" "}
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">
-            Extraordinary
+            ExtraOrdinary
           </span>
-          .
         </h1>
         <p className="text-sm sm:text-lg md:text-xl text-gray-400 mt-4 sm:mt-8 max-w-4xl mx-auto px-2 leading-relaxed">
           We are a dynamic video editing and motion graphics agency specializing

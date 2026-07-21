@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useApp } from "../context/AppContext";
+import { Link } from "react-router-dom";
 import OTPVerification from "../components/OTPVerification";
 import {
   FaEnvelope,
@@ -201,29 +202,12 @@ const AuthPage = () => {
         {/* ============ LEFT PANEL - BRANDING ============ */}
         <div className="relative hidden lg:flex flex-col justify-between p-10 bg-blue-600 border-r border-gray-200 overflow-hidden">
           <div className="relative z-10 flex items-center gap-3">
-            <div className="w-9 h-9 items-center justify-center">
-              <svg
-                version="1.0"
-                xmlns="http://www.w3.org/2000/svg"
-                width="196.000000pt"
-                height="216.000000pt"
-                viewBox="0 0 196.000000 216.000000"
-                preserveAspectRatio="xMidYMid meet"
-                className="w-full h-full"
-              >
-                <g
-                  transform="translate(0.000000,216.000000) scale(0.100000,-0.100000)"
-                  fill="#ffffff"
-                  stroke="none"
-                >
-                  <path d="M817 2028 c-7 -94 -35 -168 -97 -256-28 -39 -50 -74 -50 -77 0 -2 20 -34 45 -70 24 -36 54 -96 67 -133 22 -66 23 -75 26 -624 1 -307 0 -558 -3 -558 -17 0 -107 70 -162 126 -114 116 -183 309 -169 474 12 144 75 317 165 448 l41 61 -51 60 c-28 34 -54 61 -58 61 -10 0 -108 -159 -151 -248 -66 -135 -92 -237 -97 -387 -4 -108 -2 -145 15 -216 63 -264 202 -421 525 -594 l87 -47 0 891 0 891 -24 62 c-21 58 -73 165 -94 196 -6 9 -11 -12 -15 -60z" />
-                  <path d="M1108 2004 c-26 -54 -54 -117 -63 -138 -18 -46 -24 -34 96 -196 269 -367 369 -586 369 -808 -1 -158 -66 -326 -168 -429 -53 -54 -145 -123 -164 -123 -4 0 -8 96 -8 213 0 233 -16 411 -56 602 -24 117 -72 291 -79 284 -1 -2 0 -309 3 -681 l5 -677 86 46 c188 101 285 173 360 267 136 171 198 385 172 600 -26 221 -118 416 -354 746 -107 150 -134 209 -145 319 l-7 74 -47 -99z" />
-                </g>
-              </svg>
-            </div>
-            <span className="font-extrabold text-lg text-black tracking-tight">
-              INDICREED<span className="text-white">STUDIO</span>
-            </span>
+            <Link
+              to="/"
+              className="text-2xl font-black text-black tracking-widest uppercase whitespace-nowrap"
+            >
+              INDICREED STUDIOS<span className="text-white">.</span>
+            </Link>
           </div>
 
           <div className="relative z-10">
@@ -306,29 +290,12 @@ const AuthPage = () => {
         <div className="relative bg-black p-6 sm:p-10 lg:p-12 overflow-y-auto">
           {/* Mobile Logo */}
           <div className="lg:hidden flex items-center gap-2 mb-6">
-            <div className="w-7 h-7 flex items-center justify-center">
-              <svg
-                version="1.0"
-                xmlns="http://www.w3.org/2000/svg"
-                width="196.000000pt"
-                height="216.000000pt"
-                viewBox="0 0 196.000000 216.000000"
-                preserveAspectRatio="xMidYMid meet"
-                className="w-full h-full"
-              >
-                <g
-                  transform="translate(0.000000,216.000000) scale(0.100000,-0.100000)"
-                  fill="#ffffff"
-                  stroke="none"
-                >
-                  <path d="M817 2028 c-7 -94 -35 -168 -97 -256-28 -39 -50 -74 -50 -77 0 -2 20 -34 45 -70 24 -36 54 -96 67 -133 22 -66 23 -75 26 -624 1 -307 0 -558 -3 -558 -17 0 -107 70 -162 126 -114 116 -183 309 -169 474 12 144 75 317 165 448 l41 61 -51 60 c-28 34 -54 61 -58 61 -10 0 -108 -159 -151 -248 -66 -135 -92 -237 -97 -387 -4 -108 -2 -145 15 -216 63 -264 202 -421 525 -594 l87 -47 0 891 0 891 -24 62 c-21 58 -73 165 -94 196 -6 9 -11 -12 -15 -60z" />
-                  <path d="M1108 2004 c-26 -54 -54 -117 -63 -138 -18 -46 -24 -34 96 -196 269 -367 369 -586 369 -808 -1 -158 -66 -326 -168 -429 -53 -54 -145 -123 -164 -123 -4 0 -8 96 -8 213 0 233 -16 411 -56 602 -24 117 -72 291 -79 284 -1 -2 0 -309 3 -681 l5 -677 86 46 c188 101 285 173 360 267 136 171 198 385 172 600 -26 221 -118 416 -354 746 -107 150 -134 209 -145 319 l-7 74 -47 -99z" />
-                </g>
-              </svg>
-            </div>
-            <span className="font-extrabold text-sm text-white">
-              INDICREED<span className="text-gray-400">STUDIO</span>
-            </span>
+            <Link
+              to="/"
+              className="text-lg font-black text-white tracking-widest uppercase whitespace-nowrap"
+            >
+              INDICREED STUDIOS<span className="text-blue-500">.</span>
+            </Link>
           </div>
 
           {/* Toggle Tabs */}

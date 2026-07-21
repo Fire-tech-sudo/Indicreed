@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
+import { Helmet } from 'react-helmet-async'
 import {
   Globe, ShoppingCart, Rocket, Layout, Briefcase, Code2,
   Zap, Smartphone, Search, Headphones, FileCode, IndianRupee,
@@ -135,7 +136,11 @@ export default function WebDevPage() {
 
   return (
     <main className="overflow-x-hidden">
-
+      <Helmet>
+        <title>Web Development Services | INDICREED STUDIOS</title>
+        <meta name="description" content="Custom website development, e-commerce stores, and high-converting landing pages by INDICREED STUDIOS. Affordable pricing, fast delivery, and premium design." />
+        <meta name="keywords" content="web development, website design, e-commerce development, landing pages, custom websites, INDICREED STUDIOS" />
+      </Helmet>
       {/* ═══════════════════════════════════════════
           HERO SECTION
       ═══════════════════════════════════════════ */}

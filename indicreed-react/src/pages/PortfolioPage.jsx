@@ -2,6 +2,7 @@
 
 import React, { useMemo, useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
+import { Helmet } from 'react-helmet-async';
 import ProjectCard from "../components/ProjectCard";
 import projectsData from "../data/projectData";
 
@@ -40,6 +41,11 @@ const Portfolio = () => {
   return (
     <>
       <main className="min-h-screen bg-black pb-20 text-white transition-colors duration-300 ">
+        <Helmet>
+          <title>Portfolio | INDICREED STUDIOS Video Editing</title>
+          <meta name="description" content="Explore the portfolio of INDICREED STUDIOS. Featuring our best cinematic video editing, motion graphics, and web development projects." />
+          <meta name="keywords" content="video editing portfolio, motion graphics work, cinematic videos, INDICREED STUDIOS portfolio" />
+        </Helmet>
         {/* ============ Hero Section ============ */}
         <section className="relative overflow-hidden px-5 pt-32 pb-16 text-center section-glow">
           {/* Decorative Glows */}
@@ -60,9 +66,9 @@ const Portfolio = () => {
               className="mx-auto max-w-2xl text-base leading-8 md:text-lg
                        text-gray-400"
             >
-              Yahan mere kuch selected projects hain jinhe maine design aur
-              develop kiya hai. Har project mein maine apni best skills use ki
-              hain.
+              Explore our selected works featuring high-impact cinematic video editing, 
+              motion graphics, and bespoke web development projects. We craft every frame 
+              and line of code with precision.
             </p>
           </div>
         </section>
