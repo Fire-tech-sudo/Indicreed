@@ -8,12 +8,12 @@ const brands = [
   { id: 2, href: 'https://ibb.co/TxVcgcHL', src: '/indicreed_files/Tern-logo-01.png', alt: 'Tern Brand Logo' },
   { id: 3, href: 'https://imgbb.com/', src: '/indicreed_files/Logo-T-3.png', alt: 'Brand Logo 3' },
   { id: 4, href: 'https://ibb.co/9m78kv0M', src: '/indicreed_files/ROTARYLOGOWITH-WHEEL.png', alt: 'Rotary Brand Logo' },
-  // Added 5 new generic/placeholder brands for you to replace
-  { id: 5, href: '#', src: 'https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg', alt: 'Google' },
-  { id: 6, href: '#', src: 'https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg', alt: 'Amazon' },
-  { id: 7, href: '#', src: 'https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg', alt: 'Netflix' },
-  { id: 8, href: '#', src: 'https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg', alt: 'YouTube' },
-  { id: 9, href: '#', src: 'https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg', alt: 'IBM' },
+  // Added local business placeholders using text to ensure they render
+  { id: 5, href: '#', name: 'Sharma Real Estate' },
+  { id: 6, href: '#', name: 'Meerut Cafe' },
+  { id: 7, href: '#', name: 'Elite Fitness' },
+  { id: 8, href: '#', name: 'City Hospital' },
+  { id: 9, href: '#', name: 'Tech Hub' },
 ]
 
 export default function Brands() {
@@ -57,12 +57,20 @@ export default function Brands() {
               rel="noreferrer"
               className="brand-item flex-shrink-0 flex items-center justify-center h-24 w-40 sm:h-32 sm:w-56 p-4 sm:p-6 group cursor-pointer"
             >
-              <img 
-                loading="lazy" 
-                src={brand.src} 
-                alt={brand.alt} 
-                className="max-h-full max-w-full object-contain" 
-              />
+              {brand.src ? (
+                <img 
+                  loading="lazy" 
+                  src={brand.src} 
+                  alt={brand.alt || brand.name} 
+                  className="max-h-full max-w-full object-contain filter grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300" 
+                />
+              ) : (
+                <div className="flex items-center justify-center w-full h-full">
+                  <span className="text-xl sm:text-2xl font-bold text-gray-500 group-hover:text-white transition-colors duration-300 uppercase tracking-widest whitespace-normal text-center">
+                    {brand.name}
+                  </span>
+                </div>
+              )}
             </a>
           ))}
         </motion.div>
