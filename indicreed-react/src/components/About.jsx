@@ -14,8 +14,8 @@ export default function About() {
             <p className="text-gray-400 mt-6 text-sm sm:text-lg leading-relaxed">
               At *Indicreed Studio*, we blend raw creativity with technical expertise to transform your
               vision into stunning visual content. We specialize in cinematic editing, storytelling, and
-              high-quality motion design. We work closely with our clients—from content creators to
-              businesses—to ensure every project reflects their unique style and exceeds expectations in a
+              high-quality motion design. We work closely with our clients - from content creators to
+              businesses - to ensure every project reflects their unique style and exceeds expectations in a
               world flooded with generic edits.
             </p>
             <a

@@ -38,7 +38,7 @@ const pricingPlans = [
   {
     name: 'Starter',
     subtitle: 'For personal & small business sites',
-    price: '₹4,999',
+    price: '$99',
     priceNote: 'Starting from',
     turnaround: '5-7 Days',
     features: [
@@ -54,7 +54,7 @@ const pricingPlans = [
   {
     name: 'Professional',
     subtitle: 'For growing businesses',
-    price: '₹14,999',
+    price: '$499',
     priceNote: 'Starting from',
     turnaround: '10-14 Days',
     popular: true,
@@ -158,7 +158,7 @@ export default function WebDevPage() {
             transition={{ duration: 0.6 }}
             className="text-xs sm:text-sm font-semibold uppercase tracking-[0.15em] sm:tracking-[0.3em] text-blue-400 mb-4"
           >
-            INDICREED STUDIOS — WEB DEVELOPMENT
+            INDICREED STUDIOS - WEB DEVELOPMENT
           </motion.p>
 
           <motion.h1
@@ -182,7 +182,7 @@ export default function WebDevPage() {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="text-sm sm:text-lg md:text-xl text-gray-400 mt-6 sm:mt-8 max-w-3xl mx-auto px-2 leading-relaxed"
           >
-            From stunning landing pages to full-scale web applications — we craft
+            From stunning landing pages to full-scale web applications - we craft
             high-performance, responsive digital experiences that drive results
             and elevate your brand.
           </motion.p>
@@ -533,7 +533,7 @@ export default function WebDevPage() {
               <Link to="/" className="text-blue-400 hover:underline">
                 Video Editing Services
               </Link>{' '}
-              — cinematic edits that captivate.
+              - cinematic edits that captivate.
             </p>
           </motion.div>
         </div>

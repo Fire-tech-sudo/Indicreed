@@ -14,7 +14,7 @@ export default function Hero() {
     <section className="flex items-center justify-center text-center px-4 sm:px-6 pt-12 sm:pt-20 pb-12 sm:pb-20 relative overflow-hidden hero-gradient">
       <div className="z-10 max-w-6xl mx-auto">
         <p className="text-xs sm:text-sm font-semibold uppercase tracking-[0.15em] sm:tracking-[0.3em] text-blue-400 mb-4">
-          INDICREED STUDIOS — THE ART OF THE CUT
+          INDICREED STUDIOS - THE ART OF THE CUT
         </p>
         <h1 className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-extrabold text-white leading-tight">
           Where{" "}

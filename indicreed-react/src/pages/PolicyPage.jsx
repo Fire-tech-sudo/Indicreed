@@ -70,6 +70,81 @@ export default function PolicyPage() {
           {/* ========================================================== */}
           {/* END OF PRIVACY POLICY CONTENT                              */}
           {/* ========================================================== */}
+          <section>
+            <h2 className="text-2xl font-bold text-white mb-4">5. Payment Policy</h2>
+            <p className="text-gray-400">
+              - 50% advance payment is required to start the project. <br/>
+              - The remaining 50% is due before final delivery. <br/>
+              - No work starts without the advance.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-bold text-white mb-4">6. Revisions Policy</h2>
+            <p className="text-gray-400">
+              - 2 free revisions included per project. <br/>
+              - Additional revisions charged at $10 per edit.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-bold text-white mb-4">7. Copyright & Ownership</h2>
+            <p className="text-gray-400">
+              - Full rights to the final video are granted to the client. <br/>
+              - Editing structure and workflow remain proprietary. <br/>
+              - Raw project files are sold separately.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-bold text-white mb-4">8. Portfolio Use</h2>
+            <p className="text-gray-400">
+              Final videos may be showcased on social media, website, or showreel unless the client opts out prior to project start.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-bold text-white mb-4">9. Refund Policy</h2>
+            <p className="text-gray-400">
+              No refunds once editing has begun. Partial refunds only considered if work has not started.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-bold text-white mb-4">10. Additional Services & Charges</h2>
+            <div className="overflow-x-auto mt-4">
+              <table className="w-full text-left text-gray-400 border-collapse border border-gray-700">
+                <thead>
+                  <tr className="bg-gray-800">
+                    <th className="p-3 border border-gray-700">Service</th>
+                    <th className="p-3 border border-gray-700">Price (USD)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td className="p-3 border border-gray-700">Additional Revision (after 2)</td>
+                    <td className="p-3 border border-gray-700">$10 per edit</td>
+                  </tr>
+                  <tr>
+                    <td className="p-3 border border-gray-700">24-hour Express Delivery</td>
+                    <td className="p-3 border border-gray-700">$40</td>
+                  </tr>
+                  <tr>
+                    <td className="p-3 border border-gray-700">48-hour Fast Delivery</td>
+                    <td className="p-3 border border-gray-700">$20</td>
+                  </tr>
+                  <tr>
+                    <td className="p-3 border border-gray-700">Weekend Delivery (Sat/Sun)</td>
+                    <td className="p-3 border border-gray-700">$15</td>
+                  </tr>
+                  <tr>
+                    <td className="p-3 border border-gray-700">Raw File Buyout (Project Files)</td>
+                    <td className="p-3 border border-gray-700">$30</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
         </div>
       </div>
     </div>

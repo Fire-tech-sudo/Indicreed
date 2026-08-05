@@ -9,7 +9,7 @@ function Portfolio() {
 
   const projects = [
     {
-      title: "Brand Story — Altitude Co.",
+      title: "Brand Story - Altitude Co.",
       category: "Brand",
       image:
         "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=600&q=80",
@@ -17,7 +17,7 @@ function Portfolio() {
       views: "2.1M views",
     },
     {
-      title: "Day in My Life — Travel Vlog",
+      title: "Day in My Life - Travel Vlog",
       category: "YouTube",
       image:
         "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=600&q=80",
@@ -33,7 +33,7 @@ function Portfolio() {
       views: "5.4M views",
     },
     {
-      title: "Tech Review — iPhone 16 Pro",
+      title: "Tech Review - iPhone 16 Pro",
       category: "YouTube",
       image:
         "https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=600&q=80",
@@ -41,7 +41,7 @@ function Portfolio() {
       views: "1.8M views",
     },
     {
-      title: "Founders Podcast — Ep. 47",
+      title: "Founders Podcast - Ep. 47",
       category: "Podcast",
       image:
         "https://images.unsplash.com/photo-1478737270239-2f02b77fc618?w=600&q=80",

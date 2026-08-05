@@ -4,16 +4,14 @@ import { motion } from 'framer-motion';
 // ADD YOUR NEW BRANDS HERE (FLEXIBLE ARRAY)
 // ==========================================
 const brands = [
-  { id: 1, href: 'https://imgbb.com/', src: '/indicreed_files/logo.png', alt: 'Brand Logo 1' },
-  { id: 2, href: 'https://ibb.co/TxVcgcHL', src: '/indicreed_files/Tern-logo-01.png', alt: 'Tern Brand Logo' },
-  { id: 3, href: 'https://imgbb.com/', src: '/indicreed_files/Logo-T-3.png', alt: 'Brand Logo 3' },
-  { id: 4, href: 'https://ibb.co/9m78kv0M', src: '/indicreed_files/ROTARYLOGOWITH-WHEEL.png', alt: 'Rotary Brand Logo' },
-  // Added local business placeholders using text to ensure they render
-  { id: 5, href: '#', name: 'Sharma Real Estate' },
-  { id: 6, href: '#', name: 'Meerut Cafe' },
-  { id: 7, href: '#', name: 'Elite Fitness' },
-  { id: 8, href: '#', name: 'City Hospital' },
-  { id: 9, href: '#', name: 'Tech Hub' },
+  { id: 1, href: '#', src: '/indicreed_files/brand-1.svg', alt: 'Richa Foam Agency' },
+  { id: 2, href: '#', name: '5 sales' },
+  { id: 3, href: '#', name: 'News Worm' },
+  { id: 4, href: '#', name: 'Indicreed Games' },
+  { id: 5, href: '#', src: '/indicreed_files/logo.png', alt: 'Brand Logo 1' },
+  { id: 6, href: '#', src: '/indicreed_files/Tern-logo-01.png', alt: 'Tern Brand Logo' },
+  { id: 7, href: '#', src: '/indicreed_files/Logo-T-3.png', alt: 'Brand Logo 3' },
+  { id: 8, href: '#', src: '/indicreed_files/ROTARYLOGOWITH-WHEEL.png', alt: 'Rotary Brand Logo' },
 ]
 
 export default function Brands() {

@@ -20,7 +20,7 @@ export default function Thumbnails() {
             Crafted for Clicks &amp; Engagement
           </h3>
           <p className="text-gray-400 mt-4 max-w-2xl mx-auto text-lg">
-            We design compelling thumbnails and edit videos that don't just get seen—they get clicked.
+            We design compelling thumbnails and edit videos that don't just get seen - they get clicked.
           </p>
         </ScrollReveal>
 

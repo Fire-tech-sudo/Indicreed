@@ -14,11 +14,11 @@ const faqs = [
   },
   {
     question: "Do you offer revisions?",
-    answer: "Yes! We want you to be 100% satisfied. You get 2 free revisions to ensure the final product perfectly matches your vision. After that, any additional edits will be charged at ₹500 per edit."
+    answer: "Yes! We want you to be 100% satisfied. You get 2 free revisions to ensure the final product perfectly matches your vision. After that, any additional edits will be charged at $10 per edit."
   },
   {
-    question: "What are your web development packages?",
-    answer: "We offer Starter (₹4,999), Professional (₹14,999), and Enterprise (Custom) packages. You can check the Web Dev page for detailed breakdowns of what each package includes."
+    question: "Do you offer packages for Web Development?",
+    answer: "We offer Starter ($99), Professional ($499), and Enterprise (Custom) packages. You can check the Web Dev page for detailed breakdowns of what each package includes."
   },
   {
     question: "How do we get started?",
