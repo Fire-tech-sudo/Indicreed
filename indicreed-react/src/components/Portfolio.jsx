@@ -49,12 +49,13 @@ function Portfolio() {
       views: "340K plays",
     },
     {
-      title: "Fitness Transformation",
-      category: "Reels",
-      image:
-        "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&q=80",
-      duration: "0:45",
-      views: "3.2M views",
+      title: "Gym Workout",
+    category: "YouTube Shorts",
+    image: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=600&q=80",
+    duration: "0:45",
+    views: "120K views",
+    link: "https://youtube.com/shorts/gLc7RipnZMc?feature=share",
+
     },
   ];
 
