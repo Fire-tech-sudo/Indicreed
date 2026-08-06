@@ -21,6 +21,10 @@ const faqs = [
     answer: "We offer Starter ($99), Professional ($499), and Enterprise (Custom) packages. You can check the Web Dev page for detailed breakdowns of what each package includes."
   },
   {
+    question: "Can I pick only the services I need?",
+    answer: "Absolutely. You can choose editing, repurposing, strategy, or any combination that fits your goals."
+  },
+  {
     question: "How do we get started?",
     answer: "Simply reach out via the contact form below or hit the WhatsApp button! We'll set up a quick discovery call to understand your needs and give you a custom quote."
   }
@@ -75,15 +79,16 @@ export default function FAQ() {
                   </div>
                 </button>
 
-                <AnimatePresence>
+                <AnimatePresence initial={false}>
                   {openIndex === index && (
                     <motion.div
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: 'auto', opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3, ease: "easeInOut" }}
+                      transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+                      className="overflow-hidden"
                     >
-                      <div className="px-6 pb-5 text-gray-400 leading-relaxed border-t border-gray-800/50 mt-2 pt-4">
+                      <div className="px-6 pb-5 text-gray-400 leading-relaxed border-t border-gray-800/50 pt-4">
                         {faq.answer}
                       </div>
                     </motion.div>
