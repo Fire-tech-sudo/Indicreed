@@ -32,7 +32,7 @@ export default function About() {
             <div className="glass-card p-8 rounded-3xl max-w-sm w-full text-center">
               <img
                 loading="lazy"
-                src="/indicreed_files/profile-pic-2.png"
+                src="/indicreed_files/face.jpg"
                 alt="Aryan Sharma"
                 className="w-28 h-28 rounded-full mx-auto border-4 border-blue-600 object-cover shadow-lg"
               />
