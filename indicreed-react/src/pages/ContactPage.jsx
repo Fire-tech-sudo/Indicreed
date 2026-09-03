@@ -102,7 +102,7 @@ export default function ContactPage() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* WhatsApp Card */}
           <motion.a
-            href="https://wa.me/919897103233" 
+            href="https://wa.me/917037311229"
             target="_blank"
             rel="noreferrer"
             onClick={handleWhatsappClick}

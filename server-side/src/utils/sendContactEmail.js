@@ -1,71 +1,53 @@
 // src/utils/sendContactEmail.js
-import https from 'https';
+import nodemailer from 'nodemailer';
 
 const sendContactEmail = async (contactType, data) => {
-    if (!process.env.BREVO_API_KEY || !process.env.EMAIL_USER) {
-        console.warn("Missing email credentials, skipping email notification.");
+    // Requires EMAIL_USER (e.g. your gmail) and EMAIL_PASS (App Password)
+    if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
+        console.warn("Missing EMAIL_USER or EMAIL_PASS in .env, skipping email notification.");
         return;
     }
 
     // Default admin email to receive notifications
     const adminEmail = process.env.CONTACT_EMAIL || "workindicreed@gmail.com"; 
 
+    // Create a transporter using Gmail SMTP
+    const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: process.env.EMAIL_USER.trim(),
+            pass: process.env.EMAIL_PASS.trim()
+        }
+    });
+
     let subject = `New Contact Enquiry: ${contactType.toUpperCase()}`;
     let htmlContent = `
         <div style="font-family: Arial, sans-serif; padding: 20px; border: 1px solid #ddd; max-width: 600px;">
             <h2 style="color: #3357e8;">New Enquiry Received</h2>
             <p><strong>Type:</strong> ${contactType}</p>
+            <p><strong>Name:</strong> ${data.name || 'N/A'}</p>
+            <p><strong>User's Email:</strong> ${data.email || 'N/A'}</p>
             <p><strong>Details:</strong></p>
-            <pre style="background: #f4f4f4; padding: 15px; border-radius: 5px;">${JSON.stringify(data, null, 2)}</pre>
+            <pre style="background: #f4f4f4; padding: 15px; border-radius: 5px; white-space: pre-wrap;">${JSON.stringify(data, null, 2)}</pre>
         </div>
     `;
 
-    const postData = JSON.stringify({
-        sender: {
-            name: "Indicreed Website",
-            email: process.env.EMAIL_USER.trim(),
-        },
-        to: [{ email: adminEmail }],
+    const mailOptions = {
+        from: `"Indicreed Website" <${process.env.EMAIL_USER.trim()}>`,
+        to: adminEmail,
         subject: subject,
-        htmlContent: htmlContent,
-    });
-
-    const options = {
-        hostname: 'api.brevo.com',
-        port: 443,
-        path: '/v3/smtp/email',
-        method: 'POST',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            'api-key': process.env.BREVO_API_KEY.trim(),
-            'Content-Length': Buffer.byteLength(postData)
-        }
+        html: htmlContent,
+        replyTo: data.email // This allows you to directly reply to the user's email
     };
 
-    return new Promise((resolve, reject) => {
-        const req = https.request(options, (res) => {
-            let responseBody = '';
-            res.on('data', (chunk) => responseBody += chunk);
-            res.on('end', () => {
-                if (res.statusCode >= 200 && res.statusCode < 300) {
-                    console.log("Admin notification email sent successfully.");
-                    resolve(true);
-                } else {
-                    console.error("Failed to send email, Status:", res.statusCode, responseBody);
-                    reject(new Error(`Email sending failed with status ${res.statusCode}`));
-                }
-            });
-        });
-
-        req.on('error', (e) => {
-            console.error("Network Error sending admin email:", e);
-            reject(e);
-        });
-
-        req.write(postData);
-        req.end();
-    });
+    try {
+        const info = await transporter.sendMail(mailOptions);
+        console.log("Admin notification email sent successfully via Gmail:", info.messageId);
+        return true;
+    } catch (error) {
+        console.error("Failed to send email via Gmail:", error);
+        throw error;
+    }
 };
 
 export default sendContactEmail;

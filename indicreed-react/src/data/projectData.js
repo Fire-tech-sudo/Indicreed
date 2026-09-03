@@ -391,42 +391,34 @@ const projectsData = [
   },
   {
     id: 11,
-    title: "SaaS Dashboard - TaskFlow",
+    title: "Pixora AI - AI Image Generator",
     shortDescription:
-      "Productivity and project management web application for teams",
-    fullDescription: `TaskFlow is a robust project management tool designed for agile teams. We developed a highly interactive and real-time dashboard from scratch.
+      "A futuristic and interactive web application for generating AI art.",
+    fullDescription: `Pixora AI is a cutting-edge platform that empowers users to generate stunning digital art using advanced AI models. We built a highly responsive and visually captivating interface to match the creative nature of the tool.
 
     Project Highlights:
-    - Real-time collaborative workspace
-    - Kanban boards with Drag & Drop functionality
-    - Dark mode and custom themes
-    - Role-based Access Control (RBAC)
-    - Interactive Data Visualizations & Charts
-    - API Integration with Slack & Google Drive
-    - Real-time Notifications via WebSockets
-    - Scalable Cloud Architecture
-    - Comprehensive Test Coverage
-    - CI/CD Pipeline Setup`,
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800",
+    - Dynamic Image Generation Interface
+    - Prompt Engineering Playground
+    - Glowing, Futuristic UI/UX Design
+    - High-Performance Image Rendering
+    - Seamless API Integrations for AI Models
+    - Fast and Responsive on All Devices`,
+    image: "/indicreed_files/pixora-ai.jpg",
     screenshots: [
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800",
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800",
-      "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=800",
+      "/indicreed_files/pixora-ai.jpg",
     ],
     technologies: [
       "React",
-      "Node.js",
-      "Express",
-      "MongoDB",
-      "Socket.io",
+      "Tailwind CSS",
+      "Vercel",
     ],
     category: "Web Development",
-    liveLink: "https://example.com/taskflow",
-    behanceLink: "https://behance.net/example-saas",
-    date: "2024-11-20",
-    client: "TaskFlow Inc.",
-    duration: "10 Weeks",
-    role: "Lead Frontend Developer",
+    liveLink: "https://pixora-ai-su3w.onrender.com/",
+    behanceLink: "",
+    date: "2026-09-03",
+    client: "Pixora AI",
+    duration: "4 Weeks",
+    role: "Full-Stack Developer",
   },
   {
     id: 12,
@@ -446,25 +438,52 @@ const projectsData = [
     - ADA Compliance & Accessibility
     - GDPR Compliant Cookie Management
     - Post-launch Maintenance Plan`,
-    image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800",
+    image: "/indicreed_files/zenithcorp.jpg",
     screenshots: [
-      "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800",
-      "https://images.unsplash.com/photo-1497215728101-856f4ea42174?w=800",
-      "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800",
+      "/indicreed_files/zenithcorp.jpg",
     ],
     technologies: [
-      "Vue.js",
-      "Nuxt.js",
+      "React",
+      "Next.js",
       "Tailwind CSS",
-      "Sanity CMS",
-      "GraphQL",
+      "Vercel",
     ],
     category: "Web Development",
-    liveLink: "https://example.com/zenith",
+    liveLink: "https://zenithcorp-eight.vercel.app/",
     behanceLink: "https://behance.net/example-corporate",
     date: "2024-12-05",
     client: "Zenith Corporation",
     duration: "4 Weeks",
+    role: "Web Developer",
+  },
+  {
+    id: 13,
+    title: "Glided Fork - Fine Dining",
+    shortDescription:
+      "A stunning and elegant website for a premium fine dining restaurant.",
+    fullDescription: `Glided Fork needed a high-end web presence to match their exquisite culinary offerings. We created a visually captivating, modern, and moody website that drives reservations and highlights their menu.
+
+    Project Highlights:
+    - Elegant & Moody Dark Theme Design
+    - High-Resolution Image Optimization
+    - Responsive Menu & Reservation System Integration
+    - Smooth Scroll & Custom Animations
+    - Fast Loading Speeds & SEO Optimization`,
+    image: "/indicreed_files/gilded-fork.jpg",
+    screenshots: [
+      "/indicreed_files/gilded-fork.jpg",
+    ],
+    technologies: [
+      "React",
+      "Tailwind CSS",
+      "Vercel",
+    ],
+    category: "Web Development",
+    liveLink: "https://dinner-website-nu.vercel.app/",
+    behanceLink: "",
+    date: "2026-09-03",
+    client: "Glided Fork",
+    duration: "3 Weeks",
     role: "Web Developer",
   }
 ];
