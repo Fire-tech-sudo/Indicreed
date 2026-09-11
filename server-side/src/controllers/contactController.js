@@ -9,15 +9,20 @@ export const submitContact = async (req, res) => {
       return res.status(400).json({ success: false, message: 'Type and data are required' });
     }
 
+    const contactName = name || data?.name || '';
+    const contactEmail = email || data?.email || '';
+
     const newContact = await Contact.create({
       type,
-      name,
-      email,
+      name: contactName,
+      email: contactEmail,
       data
     });
 
     // Fire and forget email notification to admin
-    sendContactEmail(type, { name, email, ...data }).catch(console.error);
+    sendContactEmail(type, { ...data, name: contactName, email: contactEmail }).catch((err) => {
+      console.error("Failed to send contact notification email:", err);
+    });
 
     return res.status(201).json({
       success: true,

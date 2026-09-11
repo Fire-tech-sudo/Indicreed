@@ -6,8 +6,14 @@ import { useApp } from '../context/AppContext'
 const API_BASE = import.meta.env.VITE_BACKEND_URI;
 
 export default function ContactPage() {
-  const { addNotification } = useApp()
-  const [meetForm, setMeetForm] = useState({ date: '', time: '', topic: '' })
+  const { addNotification, user } = useApp()
+  const [meetForm, setMeetForm] = useState({
+    name: '',
+    email: '',
+    date: '',
+    time: '',
+    topic: ''
+  })
   const [emailForm, setEmailForm] = useState({ name: '', email: '', message: '' })
   const [showEmailModal, setShowEmailModal] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -16,10 +22,25 @@ export default function ContactPage() {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }, [])
 
+  useEffect(() => {
+    if (user) {
+      setMeetForm((prev) => ({
+        ...prev,
+        name: prev.name || user.name || '',
+        email: prev.email || user.email || '',
+      }))
+      setEmailForm((prev) => ({
+        ...prev,
+        name: prev.name || user.name || '',
+        email: prev.email || user.email || '',
+      }))
+    }
+  }, [user])
+
   const handleMeetSubmit = async (e) => {
     e.preventDefault()
-    if (!meetForm.date || !meetForm.time) {
-      addNotification('error', 'Please select a date and time')
+    if (!meetForm.name || !meetForm.email || !meetForm.date || !meetForm.time) {
+      addNotification('error', 'Please fill name, email, date and time')
       return
     }
     
@@ -28,12 +49,23 @@ export default function ContactPage() {
       const response = await fetch(`${API_BASE}/contact/submit`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ type: 'meet', data: meetForm })
+        body: JSON.stringify({
+          type: 'meet',
+          name: meetForm.name,
+          email: meetForm.email,
+          data: meetForm
+        })
       })
       const data = await response.json()
       if(data.success) {
         addNotification('success', 'Google Meet request sent! We will confirm shortly.')
-        setMeetForm({ date: '', time: '', topic: '' })
+        setMeetForm({
+          name: user?.name || '',
+          email: user?.email || '',
+          date: '',
+          time: '',
+          topic: ''
+        })
       } else {
         addNotification('error', data.message || 'Failed to submit request')
       }
@@ -153,6 +185,22 @@ export default function ContactPage() {
             </p>
             
             <form onSubmit={handleMeetSubmit} className="w-full flex flex-col gap-4 mt-auto">
+              <input 
+                type="text" 
+                placeholder="Your Name"
+                value={meetForm.name}
+                onChange={(e) => setMeetForm({...meetForm, name: e.target.value})}
+                className="w-full bg-black/50 border border-gray-700 text-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:border-purple-500 transition-colors text-sm"
+                required
+              />
+              <input 
+                type="email" 
+                placeholder="Your Email"
+                value={meetForm.email}
+                onChange={(e) => setMeetForm({...meetForm, email: e.target.value})}
+                className="w-full bg-black/50 border border-gray-700 text-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:border-purple-500 transition-colors text-sm"
+                required
+              />
               <div className="relative">
                 <FaCalendarAlt className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" />
                 <input 

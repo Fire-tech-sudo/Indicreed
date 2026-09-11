@@ -5,8 +5,10 @@ const sendOtpEmail = async (email, otp) => {
     if (!process.env.BREVO_API_KEY) {
         throw new Error("BREVO_API_KEY environment variable is not set");
     }
-    if (!process.env.EMAIL_USER) {
-        throw new Error("EMAIL_USER environment variable is not set");
+
+    const senderEmail = (process.env.BREVO_EMAIL_USER || process.env.EMAIL_USER || process.env.GMAIL_USER || '').trim();
+    if (!senderEmail) {
+        throw new Error("BREVO_EMAIL_USER or EMAIL_USER environment variable is not set");
     }
     if (!email || !otp) {
         throw new Error("Email and OTP are required");
@@ -23,8 +25,8 @@ const sendOtpEmail = async (email, otp) => {
         },
         body: JSON.stringify({
             sender: {
-                name: "Indicreed Studio", // ← Apna naam
-                email: process.env.EMAIL_USER.trim(),
+                name: "Indicreed Studio",
+                email: senderEmail,
             },
             to: [{ email: email }],
             subject: "Your OTP - Indicreed Studio",

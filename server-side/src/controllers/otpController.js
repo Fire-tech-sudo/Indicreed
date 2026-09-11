@@ -51,9 +51,7 @@ export const sendRegistrationOtp = async (req, res) => {
       },
     );
 
-    sendOtpEmail(normalizedEmail, otp).catch((err) =>
-      console.error("Background Email Error:", err),
-    );
+    await sendOtpEmail(normalizedEmail, otp);
 
     return res.json({
       success: true,
@@ -63,7 +61,7 @@ export const sendRegistrationOtp = async (req, res) => {
     console.error("sendRegistrationOtp Error:", error);
     return res.status(500).json({
       success: false,
-      message: "Failed to send OTP.",
+      message: error.message || "Failed to send OTP.",
     });
   }
 };

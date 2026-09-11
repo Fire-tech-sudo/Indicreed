@@ -26,7 +26,10 @@ const userAuth = async (req, res, next) => {
 
 export const otpLimiter = rateLimit({
     windowMs: 10 * 60 * 1000,
-    max: 3,
-    message: { error: "Too many OTP requests. Try again in 10 minutes." },
+    max: 5,
+    message: {
+        success: false,
+        message: "Too many OTP requests. Please try again after 10 minutes."
+    },
 });
 export default userAuth;
