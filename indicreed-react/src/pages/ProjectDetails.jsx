@@ -76,6 +76,7 @@ const ProjectDetail = () => {
       "Music Video": <FaPalette />,
       "Real Estate": <FaVideo />,
       Podcast: <FaPlay />,
+      "Web Development": <FaExternalLinkAlt />,
     };
     return icons[category] || <FaFilm />;
   };
@@ -91,6 +92,7 @@ const ProjectDetail = () => {
       "Music Video": "from-violet-500 to-purple-600",
       "Real Estate": "from-blue-500 to-cyan-600",
       Podcast: "from-orange-500 to-amber-600",
+      "Web Development": "from-cyan-500 to-blue-600",
     };
     return gradients[category] || "from-blue-500 to-blue-600";
   };

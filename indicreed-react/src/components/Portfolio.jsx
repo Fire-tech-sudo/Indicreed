@@ -5,57 +5,72 @@ import { Link } from "react-router-dom";
 function Portfolio() {
   const [activeFilter, setActiveFilter] = useState("All");
 
-  const filters = ["All", "YouTube", "Reels", "Brand", "Podcast"];
+  const filters = ["All", "YouTube", "Reels", "Podcast", "Web Dev"];
 
   const projects = [
     {
-      title: "Brand Story - Altitude Co.",
-      category: "Brand",
-      image:
-        "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=600&q=80",
-      duration: "3:24",
-      views: "2.1M views",
-    },
-    {
-      title: "Day in My Life - Travel Vlog",
-      category: "YouTube",
-      image:
-        "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=600&q=80",
-      duration: "12:08",
-      views: "890K views",
-    },
-    {
-      title: "Product Launch Reel",
-      category: "Reels",
-      image:
-        "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&q=80",
-      duration: "0:30",
-      views: "5.4M views",
-    },
-    {
-      title: "Tech Review - iPhone 16 Pro",
-      category: "YouTube",
-      image:
-        "https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=600&q=80",
-      duration: "15:42",
-      views: "1.8M views",
-    },
-    {
-      title: "Founders Podcast - Ep. 47",
+      title: "Founders Podcast - Full Episode",
       category: "Podcast",
-      image:
-        "https://images.unsplash.com/photo-1478737270239-2f02b77fc618?w=600&q=80",
-      duration: "48:15",
-      views: "340K plays",
+      image: "/indicreed_files/full-podcast.jpg",
+      duration: "Full Video",
+      views: "Watch on YouTube",
+      link: "https://youtu.be/OEYGfNPKPdM?si=FkMR0l97_c8b-MDr",
     },
     {
-      title: "Gym Workout",
-    category: "YouTube Shorts",
-    image: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=600&q=80",
-    duration: "0:45",
-    views: "120K views",
-    link: "https://youtube.com/shorts/gLc7RipnZMc?feature=share",
-
+      title: "Viral Podcast Highlight Reel",
+      category: "Podcast",
+      image: "/indicreed_files/podcast-reel.jpg",
+      duration: "0:45",
+      views: "YouTube Shorts",
+      link: "https://youtube.com/shorts/Uu71r8Plo3c?feature=share",
+    },
+    {
+      title: "YouTube Long form - NewsWorm Germany",
+      category: "YouTube",
+      image: "/indicreed_files/Newsworm.png",
+      duration: "12:08",
+      views: "112K Subscribers",
+      link: "https://youtu.be/XM-8fOh9o2g",
+    },
+    {
+      title: "Talking Head - Salon Retention",
+      category: "Reels",
+      image: "/indicreed_files/saloon-retention-talking-head.png",
+      duration: "0:58",
+      views: "High-Retention Short",
+      link: "https://youtube.com/shorts/lq5WzfRShIc?feature=share",
+    },
+    {
+      title: "Commercial Product Video Ad",
+      category: "Reels",
+      image: "/indicreed_files/ad-reel.jpg",
+      duration: "0:30",
+      views: "High Converting Ad",
+      link: "https://youtube.com/shorts/5Fp4x_iwUAA?feature=share",
+    },
+    {
+      title: "Real Estate Property Showcase",
+      category: "Reels",
+      image: "/indicreed_files/real-estate-reel.jpg",
+      duration: "0:45",
+      views: "Luxury Cinematic",
+      link: "https://youtube.com/shorts/G5ZB8ZAQRyw?feature=share",
+    },
+    {
+      title: "Corporate Website - Zenith Corp",
+      category: "Web Dev",
+      image: "/indicreed_files/website-zenith.png",
+      duration: "Live Site",
+      views: "Visit Website",
+      link: "https://zenithcorp-eight.vercel.app/",
+    },
+    {
+      title: "Yogyeta - Modern Landing Page",
+      category: "Web Dev",
+      image: "/indicreed_files/landing-page-yogyeta.png",
+      duration: "Live Site",
+      views: "Visit Website",
+      link: "https://yogetra.vercel.app/",
     },
   ];
 
@@ -106,18 +121,21 @@ function Portfolio() {
         {/* Projects Grid */}
         <motion.div
           layout
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
         >
           <AnimatePresence mode="popLayout">
             {filteredProjects.map((project, index) => (
-              <motion.div
+              <motion.a
                 key={project.title}
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
                 layout
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.4, delay: index * 0.05 }}
-                className="group relative overflow-hidden glass-card rounded-xl cursor-pointer"
+                className="group relative overflow-hidden glass-card rounded-xl cursor-pointer block border border-gray-800 hover:border-blue-500/60 transition-all duration-300"
               >
                 {/* Thumbnail */}
                 <div className="relative aspect-video overflow-hidden">
@@ -127,16 +145,16 @@ function Portfolio() {
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                   {/* Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/10 to-transparent opacity-70 group-hover:opacity-80 transition-opacity duration-300" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-70 group-hover:opacity-85 transition-opacity duration-300" />
 
-                  {/* Play button */}
+                  {/* Play / Visit button */}
                   <motion.div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <motion.div
-                      className="w-14 h-14 rounded-full border border-white/40 backdrop-blur-sm flex items-center justify-center"
+                      className="w-12 h-12 rounded-full border border-white/40 bg-blue-600/80 backdrop-blur-sm flex items-center justify-center text-white"
                       whileHover={{ scale: 1.1 }}
                     >
                       <svg
-                        className="w-5 h-5 text-white ml-0.5"
+                        className="w-5 h-5 ml-0.5"
                         fill="currentColor"
                         viewBox="0 0 24 24"
                       >
@@ -153,21 +171,21 @@ function Portfolio() {
                   )}
 
                   {/* Category badge */}
-                  <div className="absolute top-3 left-3 px-3 py-1 border border-white/20 text-[11px] text-white font-semibold tracking-wider rounded">
+                  <div className="absolute top-3 left-3 px-3 py-1 border border-white/20 bg-black/60 text-[11px] text-white font-semibold tracking-wider rounded">
                     {project.category}
                   </div>
                 </div>
 
                 {/* Info */}
-                <div className="p-5">
-                  <h3 className="text-lg font-bold text-white group-hover:text-blue-400 transition-colors duration-300 mb-1">
+                <div className="p-4">
+                  <h3 className="text-base font-bold text-white group-hover:text-blue-400 transition-colors duration-300 mb-1 line-clamp-1">
                     {project.title}
                   </h3>
-                  <p className="text-sm text-gray-400">
-                    {project.views}
+                  <p className="text-xs text-blue-400 font-medium">
+                    {project.views} &rarr;
                   </p>
                 </div>
-              </motion.div>
+              </motion.a>
             ))}
           </AnimatePresence>
         </motion.div>
