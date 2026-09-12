@@ -9,6 +9,14 @@ function Portfolio() {
 
   const projects = [
     {
+      title: "Founders Podcast - Ep. 1",
+      category: "Podcast",
+      image: "/indicreed_files/thumbnail-podcast.jpg",
+      duration: "Full Video",
+      views: "Watch on YouTube",
+      link: "https://youtu.be/MHGGgjNnQSM",
+    },
+    {
       title: "Founders Podcast - Full Episode",
       category: "Podcast",
       image: "/indicreed_files/full-podcast.jpg",
@@ -33,12 +41,28 @@ function Portfolio() {
       link: "https://youtu.be/XM-8fOh9o2g",
     },
     {
+      title: "Talking Head Video - Mine",
+      category: "YouTube",
+      image: "/indicreed_files/talking-head.png",
+      duration: "0:45",
+      views: "YouTube Shorts",
+      link: "https://youtube.com/shorts/PknlE11lSCA?feature=share",
+    },
+    {
       title: "Talking Head - Salon Retention",
       category: "Reels",
       image: "/indicreed_files/saloon-retention-talking-head.png",
       duration: "0:58",
       views: "High-Retention Short",
       link: "https://youtube.com/shorts/lq5WzfRShIc?feature=share",
+    },
+    {
+      title: "Gym Transformation - Fitness Edit",
+      category: "Reels",
+      image: "/indicreed_files/gym-1.jpg",
+      duration: "0:45",
+      views: "120K Views",
+      link: "https://youtube.com/shorts/gLc7RipnZMc?feature=share",
     },
     {
       title: "Commercial Product Video Ad",
@@ -55,14 +79,6 @@ function Portfolio() {
       duration: "0:45",
       views: "Luxury Cinematic",
       link: "https://youtube.com/shorts/G5ZB8ZAQRyw?feature=share",
-    },
-    {
-      title: "Gym Transformation - Fitness Edit",
-      category: "Reels",
-      image: "/indicreed_files/gym-1.jpg",
-      duration: "0:45",
-      views: "120K Views",
-      link: "https://youtube.com/shorts/gLc7RipnZMc?feature=share",
     },
   ];
 

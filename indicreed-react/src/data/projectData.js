@@ -35,17 +35,51 @@ Project Highlights:
   },
   {
     id: 2,
+    title: "Founders Podcast - Ep. 1",
+    shortDescription:
+      "High-energy Podcast episode with dynamic editing, sound design, and engaging visuals.",
+    fullDescription: `The Startup Journey podcast episode was edited to create a high-energy, engaging experience for listeners. The episode features dynamic editing, sound design, and visual elements that enhance the storytelling.
+
+Project Highlights:
+- 4K Cinematic Color Grading using DaVinci Resolve
+- Motion Graphics & Dynamic Text Animations
+- Sound Design with Custom SFX
+- Multi-format Delivery (TV, YouTube, Instagram, TikTok)
+- 3 Revisions with Client Approval Workflow
+- Social Media Cutdowns (15s, 30s, 60s)
+- Subtitle & Caption Integration`,
+    image: "/indicreed_files/thumbnail-podcast.jpg",
+    screenshots: [
+      "/indicreed_files/thumbnail-podcast.jpg",
+    ],
+    technologies: [
+      "Adobe Premiere Pro",
+      "DaVinci Resolve",
+      "After Effects",
+      "Audition",
+      "Cinema 4D",
+    ],
+    category: "Podcast",
+    liveLink: "https://youtu.be/MHGGgjNnQSM",
+    date: "2025-04-10",
+    client: "Sharat Sharma",
+    duration: "2 Weeks",
+    role: "Lead Video Editor & Colorist",
+  },
+  {
+    id: 3,
     title: "YouTube Long form - NewsWorm Germany",
     shortDescription:
       "Complete YouTube documentary video editing with custom graphics, pacing, and SEO optimization.",
-    fullDescription: `Long-form YouTube content created for NewsWorm Germany. Each video included engaging storytelling, pacing, zoom effects, and custom infographics, which helped grow the channel from 1K to 112k+ subscribers.
+    fullDescription: `"Long-form YouTube content was created for NewsWorm Germany. Each video included engaging storytelling, pacing, zoom effects, and custom infographics, which helped grow the channel from 1K to 112k+ subscribers."
 
 Project Highlights:
 - Monthly 20+ Video Edits (5-15 min each)
 - Custom Intro & Outro Animations
 - B-Roll Integration & Historical Footage Sourcing
-- Background Music & Custom Sound Effects
-- Dynamic Map Animations & Motion Graphics
+- Background Music & Sound Effects
+- Jump Cuts & Zoom Transitions
+- Lower Thirds & Subscribe Animations
 - YouTube SEO Optimized Titles & Tags
 - Consistent Brand Style Guide`,
     image: "/indicreed_files/Newsworm.png",
@@ -57,16 +91,17 @@ Project Highlights:
       "Photoshop",
       "After Effects",
       "Audacity",
+      "TubeBuddy",
     ],
     category: "YouTube",
     liveLink: "https://youtu.be/XM-8fOh9o2g",
     date: "2024-03-20",
-    client: "NewsWorm Germany",
+    client: "NewsWorm Germany (YouTube Creator)",
     duration: "Ongoing (12+ Months)",
     role: "Video Editor & Thumbnail Designer",
   },
   {
-    id: 3,
+    id: 4,
     title: "Gym Transformation - Fitness Edit",
     shortDescription:
       "High-energy fitness transformation reel with cinematic speed ramps, impact transitions, and motivational music.",
@@ -86,17 +121,52 @@ Project Highlights:
     technologies: [
       "Adobe Premiere Pro",
       "After Effects",
-      "DaVinci Resolve",
+      "Instagram Insights",
     ],
     category: "Social Media",
     liveLink: "https://youtube.com/shorts/gLc7RipnZMc?feature=share",
     date: "2026-02-28",
     client: "Hyper Gym",
-    duration: "1 Week",
+    duration: "Ongoing (8+ Months)",
     role: "Social Media Video Editor",
   },
   {
-    id: 4,
+    id: 5,
+    title: "Talking Head Video - Mine",
+    shortDescription:
+      "Professional talking head video with clean cuts, captions, zoom effects, and engaging motion graphics.",
+    fullDescription: `A high-quality talking head video was edited to maximize audience retention and engagement. The edit includes clean jump cuts, animated captions, dynamic zooms, B-roll integration, and motion graphics to create a polished, professional look for YouTube and social media.
+
+Project Highlights: 
+- Talking Head Video Editing
+- Clean Jump Cuts & Silence Removal
+- Dynamic Zoom In/Out Effects
+- Animated Captions & Subtitles
+- Motion Graphics & Callouts
+- B-Roll Integration
+- Background Music & Sound Design
+- Color Correction & Skin Tone Enhancement
+- Social Media Optimized Exports`,
+    image: "/indicreed_files/talking-head.png",
+    screenshots: [
+      "/indicreed_files/talking-head.png",
+    ],
+    technologies: [
+      "Adobe Premiere Pro",
+      "After Effects",
+      "Photoshop",
+      "Audition",
+      "CapCut",
+    ],
+    category: "YouTube",
+    liveLink: "https://youtube.com/shorts/PknlE11lSCA?feature=share",
+    date: "2025-07-10",
+    client: "personal",
+    duration: "4 Days",
+    role: "Video Editor & Motion Graphics Artist",
+  },
+  {
+    id: 6,
     title: "Talking Head - Salon Retention Strategy",
     shortDescription:
       "High-engagement talking head short with clean jump cuts, animated captions, zooms, and B-roll visuals.",
@@ -127,7 +197,7 @@ Project Highlights:
     role: "Video Editor & Motion Graphics Artist",
   },
   {
-    id: 5,
+    id: 7,
     title: "Viral Podcast Highlight Reel",
     shortDescription:
       "Fast-paced viral podcast cutdown engineered for YouTube Shorts & Instagram Reels with kinetic captions and sound design.",
@@ -156,7 +226,7 @@ Project Highlights:
     role: "Short-Form Video Specialist",
   },
   {
-    id: 6,
+    id: 8,
     title: "Commercial Product Video Ad",
     shortDescription:
       "High-converting vertical promotional ad with rapid transitions, punchy typography, and compelling CTAs.",
@@ -185,7 +255,7 @@ Project Highlights:
     role: "Motion Designer & Video Editor",
   },
   {
-    id: 7,
+    id: 9,
     title: "Real Estate Cinematic Property Reel",
     shortDescription:
       "Luxury architectural walkthrough featuring aerial drone visuals, smooth interior gimbal glides, and ambient sound design.",
@@ -215,7 +285,7 @@ Project Highlights:
     role: "Cinematic Video Editor",
   },
   {
-    id: 8,
+    id: 10,
     title: "Yogyeta - Modern Landing Page",
     shortDescription:
       "High-converting, responsive modern landing page built with React, Tailwind CSS, and interactive UI components.",
@@ -246,7 +316,7 @@ Project Highlights:
     role: "Frontend Web Developer",
   },
   {
-    id: 9,
+    id: 11,
     title: "Corporate Website - Zenith Corp",
     shortDescription:
       "A sleek, modern corporate website with multi-page navigation, enterprise branding, and interactive components.",
@@ -278,7 +348,7 @@ Project Highlights:
     role: "Full-Stack Web Developer",
   },
   {
-    id: 10,
+    id: 12,
     title: "Pixora AI - AI Image Generator",
     shortDescription:
       "A futuristic and interactive web application for generating AI art with glowing UI and responsive design.",
@@ -308,7 +378,7 @@ Project Highlights:
     role: "Full-Stack Web Developer",
   },
   {
-    id: 11,
+    id: 13,
     title: "Glided Fork - Fine Dining",
     shortDescription:
       "An elegant, moody website for a premium restaurant with responsive menus and booking CTA.",
