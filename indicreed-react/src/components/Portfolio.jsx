@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 function Portfolio() {
   const [activeFilter, setActiveFilter] = useState("All");
 
-  const filters = ["All", "YouTube", "Reels", "Podcast", "Web Dev"];
+  const filters = ["All", "YouTube", "Reels", "Podcast"];
 
   const projects = [
     {
@@ -57,20 +57,12 @@ function Portfolio() {
       link: "https://youtube.com/shorts/G5ZB8ZAQRyw?feature=share",
     },
     {
-      title: "Corporate Website - Zenith Corp",
-      category: "Web Dev",
-      image: "/indicreed_files/website-zenith.png",
-      duration: "Live Site",
-      views: "Visit Website",
-      link: "https://zenithcorp-eight.vercel.app/",
-    },
-    {
-      title: "Yogyeta - Modern Landing Page",
-      category: "Web Dev",
-      image: "/indicreed_files/landing-page-yogyeta.png",
-      duration: "Live Site",
-      views: "Visit Website",
-      link: "https://yogetra.vercel.app/",
+      title: "Gym Transformation - Fitness Edit",
+      category: "Reels",
+      image: "/indicreed_files/gym-1.jpg",
+      duration: "0:45",
+      views: "120K Views",
+      link: "https://youtube.com/shorts/gLc7RipnZMc?feature=share",
     },
   ];
 
@@ -94,7 +86,7 @@ function Portfolio() {
             Featured <span className="text-blue-400">Portfolio.</span>
           </h2>
           <p className="text-gray-400 mt-4 max-w-2xl mx-auto text-lg">
-            A glimpse into the projects we've brought to life. Every frame,
+            A glimpse into the video projects we've brought to life. Every frame,
             intentional. Every cut, purposeful.
           </p>
         </div>
@@ -121,7 +113,7 @@ function Portfolio() {
         {/* Projects Grid */}
         <motion.div
           layout
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
         >
           <AnimatePresence mode="popLayout">
             {filteredProjects.map((project, index) => (
@@ -147,7 +139,7 @@ function Portfolio() {
                   {/* Overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-70 group-hover:opacity-85 transition-opacity duration-300" />
 
-                  {/* Play / Visit button */}
+                  {/* Play button */}
                   <motion.div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <motion.div
                       className="w-12 h-12 rounded-full border border-white/40 bg-blue-600/80 backdrop-blur-sm flex items-center justify-center text-white"
@@ -177,7 +169,7 @@ function Portfolio() {
                 </div>
 
                 {/* Info */}
-                <div className="p-4">
+                <div className="p-5">
                   <h3 className="text-base font-bold text-white group-hover:text-blue-400 transition-colors duration-300 mb-1 line-clamp-1">
                     {project.title}
                   </h3>
